@@ -40,5 +40,5 @@ export interface PlenaVortoRespondo extends VortoRespondo {
    inflektitajFormoj: {
       [key: string]: string;
    };
-   blissimbolo?: number;
+   blissimbolo?: number[];
 }

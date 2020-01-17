@@ -5,7 +5,7 @@ import "./Timeran.scss";
 export interface Props {
    alteco: number;
    silaboj: string[];
-   bliss?: number;
+   bliss?: number[];
 }
 
 type Desegnilo = (
@@ -637,7 +637,7 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
          ctx.lineJoin = "round";
          ctx.stroke(vojo);
       } else {
-         const fonto = `/bliss/${bliss}`;
+         const fonto = `/bliss/${bliss[0]}`;
          const bildo = new Image();
          bildo.src = fonto;
          bildo.addEventListener("load", () => {
