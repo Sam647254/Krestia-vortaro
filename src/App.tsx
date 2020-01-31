@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.scss';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Ĉefpaĝo} from "./Ĉefpaĝo";
+import {Trovi} from "./Trovi";
+import {Serĉilo} from "./Serĉilo";
 
 function App() {
    return (
@@ -14,11 +17,16 @@ function App() {
             </p>
          </div>
 
-         <form className="serĉilo">
-            <input type="text" className="serĉiTeksto"/>
-            <input type="submit" className="serĉiButono"
-            value="Search"/>
-         </form>
+         <Serĉilo/>
+
+         <Switch>
+            <Route exact path="/">
+               <Ĉefpaĝo/>
+            </Route>
+            <Route path="/search/:peto">
+               <Trovi/>
+            </Route>
+         </Switch>
       </BrowserRouter>
    );
 }
