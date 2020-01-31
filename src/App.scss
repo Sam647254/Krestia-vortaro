@@ -1,0 +1,38 @@
+$silika-negro: #343A40;
+
+.titolo {
+   font-family: 'Nunito', sans-serif;
+   text-align: center;
+   letter-spacing: 3px;
+
+   h1 {
+      margin-bottom: 0;
+   }
+}
+
+.subtitolo {
+   font-family: 'Lato', sans-serif;
+   margin-top: 0;
+   letter-spacing: initial;
+}
+
+.serĉilo {
+   text-align: center;
+}
+
+.serĉiTeksto {
+   border: $silika-negro solid 2px;
+   padding: 7px;
+   width: 177px;
+}
+
+.serĉiButono {
+   margin-left: 10px;
+   padding: 7px;
+   border: $silika-negro solid 2px;
+   background-color: transparent;
+}
+
+input {
+   font-family: 'Lato', sans-serif;
+}
