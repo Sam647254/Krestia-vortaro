@@ -20,6 +20,8 @@ export function Vorto() {
 
    return <div>
       <h2 className="vorto">{rezulto.vorto}</h2>
+      <div className="streko"/>
+      <p className="vorttipo">{rezulto.vorttipo}</p>
       <p>{rezulto.signifo}</p>
       {rezulto.noto.length > 0 ? <p>Notes: {rezulto.noto}</p> : null}
    </div>;

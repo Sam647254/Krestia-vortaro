@@ -39,7 +39,9 @@ export function Trovi() {
       <div className="peto">Search results for "{peto}":</div>
       {speciala == null ? null : <div><span>Note: </span> {speciala}</div>}
       {rezulto.rezultoj.map(r => <div className="rezulto">
-         <span className="rezulto-vorto">{r.vorto}</span>
+         <span className="rezulto-vorto">
+            <Link to={`/word/${r.vorto}`}>{r.vorto}</Link>
+         </span>
          <span className="rezulto-signifo">{r.signifo}</span>
       </div>)}
    </div>;

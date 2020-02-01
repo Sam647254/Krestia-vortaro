@@ -41,3 +41,16 @@ $silika-negro: #343A40;
 input {
    font-family: 'Lato', sans-serif;
 }
+
+a {
+   text-decoration: none;
+   text-shadow: 0 0 2px $silika-negro;
+
+   &:link, &:visited {
+      color: $silika-negro;
+   }
+
+   &:hover {
+      text-shadow: 0 0 4px $silika-negro;
+   }
+}
