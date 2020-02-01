@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {Ĉefpaĝo} from "./Ĉefpaĝo";
 import {Trovi} from "./Trovi";
 import {Serĉilo} from "./Serĉilo";
+import {Vorto} from "./Vorto";
 
 function App() {
    return (
@@ -26,6 +27,9 @@ function App() {
                </Route>
                <Route path="/search/:peto">
                   <Trovi/>
+               </Route>
+               <Route path="/word/:vorto">
+                  <Vorto/>
                </Route>
             </Switch>
          </div>
