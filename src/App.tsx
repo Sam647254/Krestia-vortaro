@@ -19,14 +19,16 @@ function App() {
 
          <Serĉilo/>
 
-         <Switch>
-            <Route exact path="/">
-               <Ĉefpaĝo/>
-            </Route>
-            <Route path="/search/:peto">
-               <Trovi/>
-            </Route>
-         </Switch>
+         <div className="enhavo">
+            <Switch>
+               <Route exact path="/">
+                  <Ĉefpaĝo/>
+               </Route>
+               <Route path="/search/:peto">
+                  <Trovi/>
+               </Route>
+            </Switch>
+         </div>
       </BrowserRouter>
    );
 }
