@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.scss';
-import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {Ĉefpaĝo} from "./Ĉefpaĝo";
-import {Trovi} from "./Trovi";
-import {Serĉilo} from "./Serĉilo";
-import {Vorto} from "./Vorto";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {Ĉefpaĝo} from "./Partoj/Ĉefpaĝo";
+import {Trovi} from "./Partoj/Trovi";
+import {Serĉilo} from "./Partoj/Serĉilo";
+import {Vorto} from "./Partoj/Vorto";
 
 function App() {
    return (
       <BrowserRouter>
          <div className="titolo">
             <h1>
-               voliste vol Krestia
+               <Link to="/">voliste vol Krestia</Link>
             </h1>
             <p className="subtitolo">
                Krestia dictionary

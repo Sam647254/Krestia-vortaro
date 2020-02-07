@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {trovi, VortoRezulto} from "./API";
+import {trovi, VortoRezulto} from "../API";
 
 import "./Trovi.scss";
 
@@ -38,7 +38,7 @@ export function Trovi() {
    return <div>
       <div className="peto">Search results for "{peto}":</div>
       {speciala == null ? null : <div><span>Note: </span> {speciala}</div>}
-      {rezulto.rezultoj.map(r => <div className="rezulto">
+      {rezulto.rezultoj.map(r => <div className="rezulto" key={r.vorto}>
          <span className="rezulto-vorto">
             <Link to={`/word/${r.vorto}`}>{r.vorto}</Link>
          </span>

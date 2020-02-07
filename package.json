@@ -40,5 +40,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://localhost:44331"
+  "proxy": "http://krestia.5am.ooo",
+  "devDependencies": {
+    "prettier": "1.19.1"
+  },
+  "prettier": {
+    "tabWidth": 3
+  }
 }
