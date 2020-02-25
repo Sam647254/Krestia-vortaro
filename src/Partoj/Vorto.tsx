@@ -37,7 +37,10 @@ const inflekcioj = new Map(
       Igo: "Causative",
       Sola: "Standalone",
       Etigo: "Diminutive",
-      Reflekcio: "Reflexive"
+      Reflekcio: "Reflexive",
+      Okazo: "Occurrence",
+      AktualaOkazo: "Ongoing occurrence",
+      FinitaOkazo: "Complete occurrence"
    })
 );
 
