@@ -26,4 +26,5 @@ export interface PlenaVortoRespondo extends VortoRespondo {
    noto: string;
    radikoj: string[];
    vorttipo: string;
+   silaboj: string[];
 }
