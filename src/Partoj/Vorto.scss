@@ -16,3 +16,22 @@ h2.vorto {
    font-style: italic;
    margin-top: 0;
 }
+
+.inflekcio-tabelo {
+   padding: 3px;
+   border: #343A40 solid 2px;
+
+   thead tr th {
+      border-bottom: #343A40 solid 1px;
+   }
+
+   tbody tr {
+      &:nth-child(even) {
+         background-color: lightgray;
+      }
+   }
+
+   td {
+      padding: 7px 10px;
+   }
+}

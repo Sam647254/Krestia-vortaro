@@ -27,4 +27,7 @@ export interface PlenaVortoRespondo extends VortoRespondo {
    radikoj: string[];
    vorttipo: string;
    silaboj: string[];
+   inflektitajFormoj: {
+      [key: string]: string;
+   };
 }
