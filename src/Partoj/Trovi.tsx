@@ -43,17 +43,27 @@ function specialaRezulto(rezulto: VortoRezulto, peto: string) {
    return null;
 }
 
+type Ŝtato = "trovado" | "trovita";
+
 export function Trovi() {
    const { peto } = useParams<Params>();
    const [rezulto, setResult] = useState<VortoRezulto | undefined>();
+   const [ŝtato, setSearchState] = useState<Ŝtato>("trovado");
 
    useEffect(() => {
-      trovi(peto).then(setResult);
+      setSearchState("trovado");
+      trovi(peto).then(rezulto => {
+         setSearchState("trovita");
+         setResult(rezulto);
+      });
    }, [peto]);
 
-   if (rezulto == null) return <div>Searching...</div>;
+   if (ŝtato === "trovado" || rezulto == null) return <div>Searching...</div>;
 
    const speciala = specialaRezulto(rezulto, peto);
+   if (rezulto.rezultoj.length === 0 && rezulto.plenigitaVorto == null && rezulto.malinflektitaVorto == null) {
+      return <div>No results for "{peto}".</div>
+   }
    return (
       <div>
          <div className="peto">Search results for "{peto}":</div>

@@ -42,15 +42,32 @@ interface Params {
    vorto: string;
 }
 
+type Ŝtato = "alportado" | "alportita" | "netrovita" | "eraro";
+
 export function Vorto() {
    const { vorto } = useParams<Params>();
    const [rezulto, setResult] = useState<PlenaVortoRespondo | undefined>();
+   const [ŝtato, setFetchState] = useState<Ŝtato>("alportado");
 
    useEffect(() => {
-      alporti(vorto).then(setResult);
+      setFetchState("alportado");
+      alporti(vorto).then((respondo) => {
+         setResult(respondo);
+         setFetchState("alportita");
+      }).catch(eraro => {
+         console.error(eraro.response);
+         if (eraro.response.status === 404) {
+            setFetchState("netrovita");
+         } else {
+            setFetchState("eraro");
+         }
+      });
    }, [vorto]);
 
-   if (rezulto == null) return <div>Word not found: {vorto}</div>;
+   if (ŝtato === "alportado") return <div>Loading...</div>;
+   if (ŝtato === "netrovita") return <div>Word not found: {vorto}</div>;
+   if (ŝtato === "eraro") return <div>A server-side error occurred when fetching {vorto}.</div>;
+   if (rezulto == null) throw new Error("Unreachable state");
 
    return (
       <div>

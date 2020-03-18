@@ -18,11 +18,13 @@ function App() {
             </p>
          </div>
 
+         {/* eslint-disable-next-line*/}
          <Serĉilo/>
 
          <div className="enhavo">
             <Switch>
                <Route exact path="/">
+                  {/* eslint-disable-next-line*/}
                   <Ĉefpaĝo/>
                </Route>
                <Route path="/search/:peto">
