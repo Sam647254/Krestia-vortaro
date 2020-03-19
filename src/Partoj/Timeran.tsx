@@ -386,6 +386,41 @@ const desegniloj = new Map<string, Desegnilo>([
       }
    ],
    [
+      "OblikaNetransitivaVerbo",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco, y);
+         ctx.moveTo(x, y + alteco / 2);
+         ctx.lineTo(x + larĝeco, y + alteco / 2);
+         ctx.moveTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco / 2, y + alteco);
+      }
+   ],
+   [
+      "OblikaTransitivaVerbo",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco, y);
+         ctx.moveTo(x, y + alteco / 2);
+         ctx.lineTo(x + larĝeco, y + alteco / 2);
+         ctx.moveTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco / 2, y + alteco);
+         ctx.moveTo(x, y + alteco);
+         ctx.lineTo(x + larĝeco, y + alteco);
+      }
+   ],
+   [
+      "NedirektaNetransitivaVerbo",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco, y);
+         ctx.moveTo(x + larĝeco / 2, y + alteco / 2);
+         ctx.lineTo(x + larĝeco / 2, y + alteco);
+         ctx.moveTo(x, y + alteco);
+         ctx.lineTo(x + larĝeco, y + alteco);
+      }
+   ],
+   [
       "DutransitivaVerbo",
       (ctx, alteco, larĝeco, x, y) => {
          ctx.lineTo(x + larĝeco, y);
@@ -412,6 +447,21 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x, y + alteco);
+      }
+   ],
+   [
+      "MalantaŭModifanto",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x + larĝeco, y);
+         ctx.lineTo(x + larĝeco, y + alteco);
+      }
+   ],
+   [
+      "AntaŭModifanto",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.moveTo(x, y + alteco);
+         ctx.lineTo(x, y);
+         ctx.lineTo(x + larĝeco, y);
       }
    ]
 ]);

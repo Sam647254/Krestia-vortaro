@@ -25,6 +25,7 @@ const inflekcioj = new Map(
       Imperativo: "Imperative",
       Aganto: "Slot-1 argument",
       Patiento: "Slot-2 argument",
+      NedirektaPatiento: "Slot-3 argument",
       Ekzistado: "Existential",
       Invito: "Hortative",
       Translativo: "Translative",
@@ -94,25 +95,31 @@ export function Vorto() {
                   .reduce((lasta, sekva) => [lasta, ", ", sekva] as any)}
             </p>
          ) : null}
-         <h3>Inflected forms</h3>
-         <table className="inflekcio-tabelo">
-            <thead>
-               <tr>
-                  <th>Inflection</th>
-                  <th>Inflected form</th>
-               </tr>
-            </thead>
-            <tbody>
-               {Object.entries(rezulto.inflektitajFormoj).map(
-                  ([inflekcio, inflektitaFormo]) => (
-                     <tr>
-                        <td>{inflekcioj.get(inflekcio) || inflekcio}</td>
-                        <td>{inflektitaFormo}</td>
-                     </tr>
-                  )
-               )}
-            </tbody>
-         </table>
+         {rezulto?.inflektitajFormoj == null
+            ? null
+            : [
+                 <h3>Inflected forms</h3>,
+                 <table className="inflekcio-tabelo">
+                    <thead>
+                       <tr>
+                          <th>Inflection</th>
+                          <th>Inflected form</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                       {Object.entries(rezulto.inflektitajFormoj).map(
+                          ([inflekcio, inflektitaFormo]) => (
+                             <tr>
+                                <td>
+                                   {inflekcioj.get(inflekcio) || inflekcio}
+                                </td>
+                                <td>{inflektitaFormo}</td>
+                             </tr>
+                          )
+                       )}
+                    </tbody>
+                 </table>
+              ]}
       </div>
    );
 }
