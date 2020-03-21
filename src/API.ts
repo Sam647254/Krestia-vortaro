@@ -10,13 +10,18 @@ export async function alporti(vorto: string) {
    return (await respondo.data) as PlenaVortoRespondo;
 }
 
+export async function alportiĈiujn() {
+   const respondo = await Axios.get(`/vortlisto/alfabeta`);
+   return (await respondo.data) as VortoRespondo[];
+}
+
 export interface VortoRezulto {
    malinflektitaVorto: string | undefined;
    plenigitaVorto: string | undefined;
    rezultoj: VortoRespondo[];
 }
 
-interface VortoRespondo {
+export interface VortoRespondo {
    vorto: string;
    signifo: string;
 }

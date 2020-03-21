@@ -9,6 +9,8 @@ const inflekcioj = new Map(
    Object.entries({
       Infinitivo: "Infinitive",
       Difinito: "Definite",
+      UnuNombro: "Singular",
+      PluraNombro: "Plural",
       Havaĵo: "Possession",
       Progresivo: "Progressive",
       Perfekto: "Perfect",
@@ -51,22 +53,25 @@ export function Vorto() {
 
    useEffect(() => {
       setFetchState("alportado");
-      alporti(vorto).then((respondo) => {
-         setResult(respondo);
-         setFetchState("alportita");
-      }).catch(eraro => {
-         console.error(eraro.response);
-         if (eraro.response.status === 404) {
-            setFetchState("netrovita");
-         } else {
-            setFetchState("eraro");
-         }
-      });
+      alporti(vorto)
+         .then(respondo => {
+            setResult(respondo);
+            setFetchState("alportita");
+         })
+         .catch(eraro => {
+            console.error(eraro.response);
+            if (eraro.response.status === 404) {
+               setFetchState("netrovita");
+            } else {
+               setFetchState("eraro");
+            }
+         });
    }, [vorto]);
 
    if (ŝtato === "alportado") return <div>Loading...</div>;
    if (ŝtato === "netrovita") return <div>Word not found: {vorto}</div>;
-   if (ŝtato === "eraro") return <div>A server-side error occurred when fetching {vorto}.</div>;
+   if (ŝtato === "eraro")
+      return <div>A server-side error occurred when fetching {vorto}.</div>;
    if (rezulto == null) throw new Error("Unreachable state");
 
    return (

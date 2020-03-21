@@ -5,6 +5,7 @@ import {Ĉefpaĝo} from "./Partoj/Ĉefpaĝo";
 import {Trovi} from "./Partoj/Trovi";
 import {Serĉilo} from "./Partoj/Serĉilo";
 import {Vorto} from "./Partoj/Vorto";
+import {Vortlisto} from "./Partoj/Vortlisto";
 
 function App() {
    return (
@@ -32,6 +33,9 @@ function App() {
                </Route>
                <Route path="/word/:vorto">
                   <Vorto/>
+               </Route>
+               <Route exact path="/wordlist">
+                  <Vortlisto/>
                </Route>
             </Switch>
          </div>
