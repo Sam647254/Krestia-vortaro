@@ -19,6 +19,11 @@ export interface VortoRezulto {
    malinflektitaVorto: string | undefined;
    plenigitaVorto: string | undefined;
    rezultoj: VortoRespondo[];
+   gloso: string | undefined;
+   malinflektajŜtupoj: string[] | undefined;
+   glosajVortoj: string[] | undefined;
+   glosajŜtupoj: string[][] | undefined;
+   bazajVortoj: string[] | undefined;
 }
 
 export interface VortoRespondo {
