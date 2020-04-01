@@ -94,7 +94,7 @@ type Ŝtato = "trovado" | "trovita";
 
 export function Trovi() {
    const { peto } = useParams<Params>();
-   const [rezulto, setResult] = useState<VortoRezulto | undefined>();
+   const [rezulto, setResult] = useState<VortoRezulto | undefined>(undefined);
    const [ŝtato, setSearchState] = useState<Ŝtato>("trovado");
 
    useEffect(() => {
@@ -105,7 +105,14 @@ export function Trovi() {
       });
    }, [peto]);
 
-   if (ŝtato === "trovado" || rezulto == null) return <div>Searching...</div>;
+   const glosoPeto = peto.trim().split(" ");
+
+   if (
+      ŝtato === "trovado" ||
+      rezulto == null ||
+      (glosoPeto.length > 1 && (rezulto.glosajVortoj != null) && glosoPeto.length > (rezulto.glosajVortoj.length || 0))
+   )
+      return <div>Searching...</div>;
 
    const speciala = specialaRezulto(rezulto, peto);
    if (
@@ -132,7 +139,7 @@ export function Trovi() {
                </thead>
                <tbody>
                   {vortoj.map((v, i) => (
-                     <tr>
+                     <tr key={v}>
                         <td>{v}</td>
                         <td>
                            {rezulto?.bazajVortoj![i].length === 0 ? null : (
@@ -145,9 +152,8 @@ export function Trovi() {
                            {rezulto?.glosajVortoj![i]}
                            {rezulto?.glosajŜtupoj?.length! > 0
                               ? rezulto
-                                   ?.glosajŜtupoj![i]?.reverse().map(
-                                      ŝ => `-${inflekcioj.get(ŝ) || ŝ}`
-                                   )
+                                   ?.glosajŜtupoj![i]?.reverse()
+                                   .map(ŝ => `-${inflekcioj.get(ŝ) || ŝ}`)
                                    .join("")
                               : null}
                         </td>

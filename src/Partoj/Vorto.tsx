@@ -98,8 +98,8 @@ export function Vorto() {
          {rezulto?.inflektitajFormoj == null
             ? null
             : [
-                 <h3>Inflected forms</h3>,
-                 <table className="inflekcio-tabelo">
+                 <h3 key="h3">Inflected forms</h3>,
+                 <table className="inflekcio-tabelo" key="tabelo">
                     <thead>
                        <tr>
                           <th>Inflection</th>
@@ -109,7 +109,7 @@ export function Vorto() {
                     <tbody>
                        {Object.entries(rezulto.inflektitajFormoj).map(
                           ([inflekcio, inflektitaFormo]) => (
-                             <tr>
+                             <tr key={inflekcio}>
                                 <td>
                                    {inflekcioj.get(inflekcio) || inflekcio}
                                 </td>

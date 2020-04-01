@@ -13,10 +13,10 @@ export function Ĉefpaĝo() {
             up words, even in their inflected forms, or view the full{" "}
             <Link to="/wordlist">word list</Link>.
          </p>
-         <p>
-            For the reference grammar, please see the{" "}
-            <a href="http://5am.link/krestia-book">Krestia book.</a>
-         </p>
+         {/*<p>*/}
+         {/*   For the reference grammar, please see the{" "}*/}
+         {/*   <a href="http://5am.link/krestia-book">Krestia book.</a>*/}
+         {/*</p>*/}
       </div>
    );
 }
