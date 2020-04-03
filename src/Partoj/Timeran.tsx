@@ -386,6 +386,16 @@ const desegniloj = new Map<string, Desegnilo>([
       }
    ],
    [
+      "NedirektaTransitivaVerbo",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x + larĝeco, y);
+         ctx.moveTo(x + larĝeco / 2, y);
+         ctx.lineTo(x + larĝeco / 2, y + alteco);
+         ctx.moveTo(x, y + alteco);
+         ctx.lineTo(x + larĝeco, y + alteco);
+      }
+   ],
+   [
       "OblikaNetransitivaVerbo",
       (ctx, alteco, larĝeco, x, y) => {
          ctx.lineTo(x + larĝeco / 2, y + alteco / 2);
@@ -612,7 +622,7 @@ export function Timeran({ alteco, silaboj }: Props) {
                // Finaĵo
                desegniloj
                   .get(silabo)
-                  ?.call(null, ctx, plenaAlteco, (larĝeco * 2) / 3, x, y);
+                  ?.call(null, ctx, plenaAlteco, larĝeco / 2, x, y);
                break;
          }
          x += larĝeco + spaceto;
