@@ -28,6 +28,27 @@ export function Ĉefpaĝo() {
             <ul>
                <li>Initial public release</li>
             </ul>
+            <h2>Copyright information</h2>
+            <p>This website uses Blissymbols.</p>
+            <p className="malgranda">
+               Blissymbol resources based on the Blissymbolics Communication
+               International Authorized Vocabulary (BCI-AV) are licensed under a
+               Creative Commons Attribution-Share Alike 3.0 Unported License.
+               Based on a work by Blissymbolics Communication International
+               (BCI) available via{" "}
+               <a
+                  href="http://blissymbolics.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
+                  www.blissymbolics.org.
+               </a>{" "}
+               (An alternative royalty based supported license option for
+               commercial distribution of Blissymbol resources is also
+               available. Please contact BCI at{" "}
+               <a href="mailto:bic@blissymbolics.org">bci@blissymbolics.org</a>{" "}
+               for further details.)
+            </p>
          </div>
       </div>
    );
