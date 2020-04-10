@@ -14,9 +14,9 @@ const inflekcioj = new Map(
       Progresivo: "PROG",
       Perfekto: "PERF",
       Estonteco: "INTN",
-      NominativoVolo: "VOL1",
-      AkuzativoVolo: "VOL2",
-      DativoVolo: "VOL3",
+      Ujo1Volo: "VOL1",
+      Ujo2Volo: "VOL2",
+      Ujo3Volo: "VOL3",
       PredikativoEsti: "PRED_IS",
       AtributivoEstiAntaŭ: "ATTR_IS>",
       AtributivoEstiMalantaŭ: "ATTR_IS<",
@@ -34,13 +34,18 @@ const inflekcioj = new Map(
       Translativo: "TRNS",
       Ĝerundo: "GER",
       SpecifaĜerundo: "SGER",
-      PartaNominativo: "PRT1",
-      PartaAkuzativo: "PRT2",
-      PartaDativo: "PRT3",
+      PartaUjo1: "PRT1",
+      PartaUjo2: "PRT2",
+      PartaUjo3: "PRT3",
+      UnueUjo2: "SLT2",
+      UnueUjo3: "SLT3",
       Igo: "CSTV",
       Sola: "STL",
       Etigo: "DIM",
-      Reflekcio: "RFLX"
+      Reflekcio: "RFLX",
+      Okazo: "OCCR",
+      AktualaOkazo: "OCRC",
+      FinitaOkazo: "OCRP"
    })
 );
 
