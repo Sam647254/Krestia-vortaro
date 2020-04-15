@@ -651,7 +651,7 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
             desegniloj.get(silaboj[silaboj.length - 1])
-               ?.call(null, vojo, blissAlteco, blissAlteco / 3, blissLarĝeco + spaceto * 2, blissAlto);
+               ?.call(null, vojo, blissAlteco, blissAlteco / 3, blissLarĝeco + spaceto * 3, blissAlto);
             ctx.stroke(vojo);
          })
       }

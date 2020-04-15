@@ -41,4 +41,5 @@ export interface PlenaVortoRespondo extends VortoRespondo {
       [key: string]: string;
    };
    blissimbolo?: number[];
+   ujoj: [string, string, string];
 }

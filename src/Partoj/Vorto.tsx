@@ -92,6 +92,7 @@ export function Vorto() {
          <div className="streko" />
          <p className="vorttipo">{rezulto.vorttipo}</p>
          <p>{rezulto.signifo}</p>
+         <p>{rezulto.ujoj?.map((ujo, i) => <span>Slot {i + 1}: {ujo}</span>)}</p>
          {rezulto.noto.length > 0 ? <p>Notes: {rezulto.noto}</p> : null}
          {rezulto.radikoj.length > 0 ? (
             <p>
