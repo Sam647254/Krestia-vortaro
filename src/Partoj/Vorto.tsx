@@ -86,6 +86,9 @@ export function Vorto() {
       <div>
          <h2 className="vorto">{rezulto.vorto}</h2>
          <Timeran alteco={25} silaboj={rezulto.silaboj} />
+         {rezulto.blissimbolo != null ? (
+            <Timeran alteco={25} silaboj={rezulto.silaboj} bliss={rezulto.blissimbolo} />
+         ) : null}
          <div className="streko" />
          <p className="vorttipo">{rezulto.vorttipo}</p>
          <p>{rezulto.signifo}</p>

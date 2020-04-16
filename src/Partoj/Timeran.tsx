@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 
 import "./Timeran.scss";
 
 export interface Props {
    alteco: number;
    silaboj: string[];
+   bliss?: number;
 }
 
 type Desegnilo = (
-   ctx: CanvasRenderingContext2D,
+   ctx: Path2D,
    alteco: number,
    larĝeco: number,
    x: number,
@@ -481,160 +482,186 @@ const larĝeco = 23;
 const unuLarĝeco = 15;
 const duonaLarĝeco = 8;
 const spaceto = 7;
+const blissAlto = 172;
+const blissMalalto = 343;
+const blissAlteco = blissMalalto - blissAlto;
 
-export function Timeran({ alteco, silaboj }: Props) {
+export function Timeran({alteco, silaboj, bliss}: Props) {
    const kanvaso = React.createRef<HTMLCanvasElement>();
    const duonaAlteco = alteco / 2;
    const plenaAlteco = alteco + spaceto;
 
    useEffect(() => {
-      const ctx = kanvaso.current!.getContext("2d")!;
-      ctx.lineCap = "round";
-      ctx.lineWidth = 4.7;
-      ctx.lineJoin = "round";
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      ctx.beginPath();
-      let x = 5,
-         y = 5;
-      silaboj.forEach(silabo => {
-         ctx.moveTo(x, y);
-         switch (silabo.length) {
-            case 1:
-               desegniloj
-                  .get(silabo)
-                  ?.call(null, ctx, plenaAlteco, unuLarĝeco, x, y);
-               x -= larĝeco - unuLarĝeco;
-               break;
-            case 2: // VC
-               if (vokaloj.has(silabo.charAt(0))) {
+      if (kanvaso.current == null) return;
+      if (bliss == null) {
+         const ctx = kanvaso.current.getContext("2d")!;
+         const vojo = new Path2D();
+         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+         ctx.beginPath();
+         let x = 5,
+            y = 5;
+         silaboj.forEach(silabo => {
+            vojo.moveTo(x, y);
+            switch (silabo.length) {
+               case 1:
                   desegniloj
-                     .get(silabo.charAt(0))
-                     ?.call(null, ctx, plenaAlteco, duonaLarĝeco, x, y);
-                  ctx.moveTo(x + duonaLarĝeco + spaceto, y);
-                  desegniloj
-                     .get(silabo.charAt(1))
-                     ?.call(
-                        null,
-                        ctx,
-                        plenaAlteco,
-                        duonaLarĝeco,
+                     .get(silabo)
+                     ?.call(null, vojo, plenaAlteco, unuLarĝeco, x, y);
+                  x -= larĝeco - unuLarĝeco;
+                  break;
+               case 2: // VC
+                  if (vokaloj.has(silabo.charAt(0))) {
+                     desegniloj
+                        .get(silabo.charAt(0))
+                        ?.call(null, vojo, plenaAlteco, duonaLarĝeco, x, y);
+                     vojo.moveTo(x + duonaLarĝeco + spaceto, y);
+                     desegniloj
+                        .get(silabo.charAt(1))
+                        ?.call(
+                           null,
+                           vojo,
+                           plenaAlteco,
+                           duonaLarĝeco,
+                           x + duonaLarĝeco + spaceto,
+                           y
+                        );
+                  } else {
+                     // CV
+                     desegniloj
+                        .get(silabo.charAt(0))
+                        ?.call(null, vojo, duonaAlteco, unuLarĝeco, x, y);
+                     vojo.moveTo(x, y + duonaAlteco + spaceto);
+                     desegniloj
+                        .get(silabo.charAt(1))
+                        ?.call(
+                           null,
+                           vojo,
+                           duonaAlteco,
+                           unuLarĝeco,
+                           x,
+                           y + duonaAlteco + spaceto
+                        );
+                     x -= larĝeco - unuLarĝeco;
+                  }
+                  break;
+               case 3: // CCV
+                  if (vokaloj.has(silabo.charAt(2))) {
+                     desegniloj
+                        .get(silabo.substr(0, 2))
+                        ?.call(null, vojo, duonaAlteco, larĝeco, x, y);
+                     vojo.moveTo(x, y + duonaAlteco + spaceto);
+                     desegniloj
+                        .get(silabo.charAt(2))
+                        ?.call(
+                           null,
+                           vojo,
+                           duonaAlteco,
+                           larĝeco,
+                           x,
+                           y + duonaAlteco + spaceto
+                        );
+                  } else {
+                     // CVC
+                     desegniloj
+                        .get(silabo.charAt(0))
+                        ?.call(null, vojo, duonaAlteco, larĝeco, x, y);
+                     vojo.moveTo(x, y + duonaAlteco + spaceto);
+                     desegniloj
+                        .get(silabo.charAt(1))
+                        ?.call(
+                           null,
+                           vojo,
+                           duonaAlteco,
+                           duonaLarĝeco,
+                           x,
+                           y + duonaAlteco + spaceto
+                        );
+                     vojo.moveTo(
                         x + duonaLarĝeco + spaceto,
-                        y
-                     );
-               } else {
-                  // CV
-                  desegniloj
-                     .get(silabo.charAt(0))
-                     ?.call(null, ctx, duonaAlteco, unuLarĝeco, x, y);
-                  ctx.moveTo(x, y + duonaAlteco + spaceto);
-                  desegniloj
-                     .get(silabo.charAt(1))
-                     ?.call(
-                        null,
-                        ctx,
-                        duonaAlteco,
-                        unuLarĝeco,
-                        x,
                         y + duonaAlteco + spaceto
                      );
-                  x -= larĝeco - unuLarĝeco;
-               }
-               break;
-            case 3: // CCV
-               if (vokaloj.has(silabo.charAt(2))) {
+                     desegniloj
+                        .get(silabo.charAt(2))
+                        ?.call(
+                           null,
+                           vojo,
+                           duonaAlteco,
+                           duonaLarĝeco,
+                           x + duonaLarĝeco + spaceto,
+                           y + duonaAlteco + spaceto
+                        );
+                  }
+                  break;
+               case 4: // CCVC
                   desegniloj
                      .get(silabo.substr(0, 2))
-                     ?.call(null, ctx, duonaAlteco, larĝeco, x, y);
-                  ctx.moveTo(x, y + duonaAlteco + spaceto);
+                     ?.call(null, vojo, duonaAlteco, larĝeco, x, y);
+                  vojo.moveTo(x, y + duonaAlteco + spaceto);
                   desegniloj
                      .get(silabo.charAt(2))
                      ?.call(
                         null,
-                        ctx,
-                        duonaAlteco,
-                        larĝeco,
-                        x,
-                        y + duonaAlteco + spaceto
-                     );
-               } else {
-                  // CVC
-                  desegniloj
-                     .get(silabo.charAt(0))
-                     ?.call(null, ctx, duonaAlteco, larĝeco, x, y);
-                  ctx.moveTo(x, y + duonaAlteco + spaceto);
-                  desegniloj
-                     .get(silabo.charAt(1))
-                     ?.call(
-                        null,
-                        ctx,
+                        vojo,
                         duonaAlteco,
                         duonaLarĝeco,
                         x,
                         y + duonaAlteco + spaceto
                      );
-                  ctx.moveTo(
+                  vojo.moveTo(
                      x + duonaLarĝeco + spaceto,
                      y + duonaAlteco + spaceto
                   );
                   desegniloj
-                     .get(silabo.charAt(2))
+                     .get(silabo.charAt(3))
                      ?.call(
                         null,
-                        ctx,
+                        vojo,
                         duonaAlteco,
                         duonaLarĝeco,
                         x + duonaLarĝeco + spaceto,
                         y + duonaAlteco + spaceto
                      );
-               }
-               break;
-            case 4: // CCVC
-               desegniloj
-                  .get(silabo.substr(0, 2))
-                  ?.call(null, ctx, duonaAlteco, larĝeco, x, y);
-               ctx.moveTo(x, y + duonaAlteco + spaceto);
-               desegniloj
-                  .get(silabo.charAt(2))
-                  ?.call(
-                     null,
-                     ctx,
-                     duonaAlteco,
-                     duonaLarĝeco,
-                     x,
-                     y + duonaAlteco + spaceto
-                  );
-               ctx.moveTo(
-                  x + duonaLarĝeco + spaceto,
-                  y + duonaAlteco + spaceto
-               );
-               desegniloj
-                  .get(silabo.charAt(3))
-                  ?.call(
-                     null,
-                     ctx,
-                     duonaAlteco,
-                     duonaLarĝeco,
-                     x + duonaLarĝeco + spaceto,
-                     y + duonaAlteco + spaceto
-                  );
-               break;
-            default:
-               // Finaĵo
-               desegniloj
-                  .get(silabo)
-                  ?.call(null, ctx, plenaAlteco, larĝeco / 2, x, y);
-               break;
-         }
-         x += larĝeco + spaceto;
-      });
-      ctx.stroke();
-   }, [duonaAlteco, kanvaso, plenaAlteco, silaboj]);
+                  break;
+               default:
+                  // Finaĵo
+                  desegniloj
+                     .get(silabo)
+                     ?.call(null, vojo, plenaAlteco, larĝeco / 2, x, y);
+                  break;
+            }
+            x += larĝeco + spaceto;
+         });
+         ctx.canvas.width = x;
+         ctx.lineCap = "round";
+         ctx.lineWidth = 4.7;
+         ctx.lineJoin = "round";
+         ctx.stroke(vojo);
+      } else {
+         const fonto = `/bliss/${bliss}`;
+         const bildo = new Image();
+         bildo.src = fonto;
+         bildo.addEventListener("load", () => {
+            if (kanvaso.current == null) return;
+            const ctx = kanvaso.current.getContext("2d")!;
+            ctx.drawImage(bildo, 0, 0);
+            const blissLarĝeco = bildo.width;
+            const vojo = new Path2D();
+            vojo.moveTo(blissLarĝeco + spaceto * 2, blissAlto);
+            ctx.lineWidth = 10;
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+            desegniloj.get(silaboj[silaboj.length - 1])
+               ?.call(null, vojo, blissAlteco, blissAlteco / 3, blissLarĝeco + spaceto * 2, blissAlto);
+            ctx.stroke(vojo);
+         })
+      }
+   }, [bliss, duonaAlteco, kanvaso, plenaAlteco, silaboj]);
 
    return (
       <canvas
-         className="kanvaso"
-         height={alteco + spaceto * 2 + 3}
-         width={300}
+         className={"kanvaso" + (bliss != null ? " bliss" : "")}
+         height={bliss == null ? alteco + spaceto * 2 + 3 : 500}
+         width={bliss == null ? 150 : 700}
          ref={kanvaso}
       />
    );
