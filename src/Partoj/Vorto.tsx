@@ -87,12 +87,27 @@ export function Vorto() {
          <h2 className="vorto">{rezulto.vorto}</h2>
          <Timeran alteco={25} silaboj={rezulto.silaboj} />
          {rezulto.blissimbolo != null ? (
-            <Timeran alteco={25} silaboj={rezulto.silaboj} bliss={rezulto.blissimbolo} />
+            <Timeran
+               alteco={25}
+               silaboj={rezulto.silaboj}
+               bliss={rezulto.blissimbolo}
+            />
          ) : null}
          <div className="streko" />
          <p className="vorttipo">{rezulto.vorttipo}</p>
          <p>{rezulto.signifo}</p>
-         <p>{rezulto.ujoj?.map((ujo, i) => <span>Slot {i + 1}: {ujo}</span>)}</p>
+         <p>
+            {rezulto.ujoj?.map((ujo, i) =>
+               ujo == null
+                  ? null
+                  : [
+                       <span>
+                          Slot {i + 1}: {ujo}
+                       </span>,
+                       <br />
+                    ]
+            )}
+         </p>
          {rezulto.noto.length > 0 ? <p>Notes: {rezulto.noto}</p> : null}
          {rezulto.radikoj.length > 0 ? (
             <p>
