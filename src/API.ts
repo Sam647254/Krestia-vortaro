@@ -1,18 +1,23 @@
 import Axios from "axios";
 
 export async function trovi(peto: string) {
-   const respondo = await Axios.get(`/trovi/${peto}`);
+   const respondo = await Axios.get(`/api/trovi/${peto}`);
    return (await respondo.data) as VortoRezulto;
 }
 
 export async function alporti(vorto: string) {
-   const respondo = await Axios.get(`/vorto/${vorto}`);
+   const respondo = await Axios.get(`/api/vorto/${vorto}`);
    return (await respondo.data) as PlenaVortoRespondo;
 }
 
 export async function alportiĈiujn() {
-   const respondo = await Axios.get(`/vortlisto/alfabeta`);
+   const respondo = await Axios.get(`/api/vortlisto/alfabeta`);
    return (await respondo.data) as VortoRespondo[];
+}
+
+export async function alportiĈiujnTipajn() {
+   const respondo = await Axios.get("/api/vortlisto/tipo");
+   return (await respondo.data) as TipaVortlisto;
 }
 
 export interface VortoRezulto {
@@ -42,4 +47,8 @@ export interface PlenaVortoRespondo extends VortoRespondo {
    };
    blissimbolo?: number[];
    ujoj: [string, string, string];
+}
+
+export interface TipaVortlisto {
+   [key: string]: VortoRespondo[];
 }

@@ -10,8 +10,16 @@ export function Ĉefpaĝo() {
          </p>
          <p>
             This website is the dictionary. You can use the search bar to look
-            up words, even in their inflected forms, or view the full{" "}
-            <Link to="/wordlist">word list</Link>.
+            up words, even in their inflected forms, or view the full word list
+            in the following formats:
+            <ul>
+               <li>
+                  <Link to="/wordlist">Alphabetical</Link>
+               </li>
+               <li>
+                  <Link to="/typedlist">Alphabetical by type</Link>
+               </li>
+            </ul>
          </p>
          {/*<p>*/}
          {/*   For the reference grammar, please see the{" "}*/}
@@ -21,6 +29,7 @@ export function Ĉefpaĝo() {
             <h2>Changelog</h2>
             <h3>v0.2 (work in progress)</h3>
             <ul>
+               <li>Added slot information to verbs</li>
                <li>Added Blissymbols to dictionary entries</li>
                <li>(Recreated the lexicon)</li>
             </ul>
