@@ -37,7 +37,7 @@ export function Ĉefpaĝo() {
             <ul>
                <li>Initial public release</li>
             </ul>
-            <h2>Copyright information</h2>
+            <div className="streko" />
             <p>This website uses Blissymbols.</p>
             <p className="malgranda">
                Blissymbol resources based on the Blissymbolics Communication
@@ -57,6 +57,26 @@ export function Ĉefpaĝo() {
                available. Please contact BCI at{" "}
                <a href="mailto:bic@blissymbolics.org">bci@blissymbolics.org</a>{" "}
                for further details.)
+            </p>
+            <p>
+               The content of the dictionary is released into the public domain.
+               The{" "}
+               <a
+                  href="https://github.com/Sam647254/Krestia-vortaro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
+                  source code
+               </a>{" "}
+               is available under the{" "}
+               <a
+                  href="http://unlicense.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
+                  Unlicense
+               </a>
+               .
             </p>
          </div>
       </div>

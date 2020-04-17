@@ -637,7 +637,7 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
          ctx.lineJoin = "round";
          ctx.stroke(vojo);
       } else {
-         const fonto = `/bliss/${bliss[0]}`;
+         const fonto = `/api/bliss/${bliss[0]}`;
          const bildo = new Image();
          bildo.src = fonto;
          bildo.addEventListener("load", () => {
