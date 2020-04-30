@@ -40,7 +40,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://krestia.5am.ooo",
+  "proxy": "https://krestia-intern-season.herokuapp.com",
   "devDependencies": {
     "prettier": "1.19.1"
   },

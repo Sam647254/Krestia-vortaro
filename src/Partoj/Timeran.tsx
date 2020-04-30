@@ -661,7 +661,7 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
       <canvas
          className={"kanvaso" + (bliss != null ? " bliss" : "")}
          height={bliss == null ? alteco + spaceto * 2 + 3 : 500}
-         width={bliss == null ? 150 : 700}
+         width={bliss == null ? 150 : 900}
          ref={kanvaso}
       />
    );

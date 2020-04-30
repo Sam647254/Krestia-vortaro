@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    { "src": "/vorto/(.*)", "dest": "https://krestia-intern-season.herokuapp.com/vorto/$1"},
+    { "src": "/trovi/(.*)", "dest": "https://krestia-intern-season.herokuapp.com/trovi/$1"},
+    { "src": "/vortlisto/alfabeta", "dest":  "https://krestia-intern-season.herokuapp.com/vortlisto/alfabeta"},
+    {
+      "src": "/*",
+      "dest": "/index.html"
+    }
+  ]
+}
