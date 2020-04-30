@@ -17,6 +17,18 @@ export function Ĉefpaĝo() {
          {/*   For the reference grammar, please see the{" "}*/}
          {/*   <a href="http://5am.link/krestia-book">Krestia book.</a>*/}
          {/*</p>*/}
+         <div>
+            <h2>Changelog</h2>
+            <h3>v0.2 (work in progress)</h3>
+            <ul>
+               <li>Added Blissymbols to dictionary entries</li>
+               <li>(Recreated the lexicon)</li>
+            </ul>
+            <h3>v0.1 (2020/04/05)</h3>
+            <ul>
+               <li>Initial public release</li>
+            </ul>
+         </div>
       </div>
    );
 }
