@@ -14,10 +14,13 @@ export function Ĉefpaĝo() {
             in the following formats:
             <ul>
                <li>
-                  <Link to="/wordlist">Alphabetical</Link>
+                  <Link to="/wordlist">Full alphabetical list</Link>
                </li>
                <li>
-                  <Link to="/typedlist">Alphabetical by type</Link>
+                  <Link to="/typedlist">Alphabetical grouped by word type</Link>
+               </li>
+               <li>
+                  <Link to="/categorylist">Alphabetical grouped by categories</Link>
                </li>
             </ul>
          </p>

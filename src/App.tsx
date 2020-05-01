@@ -7,6 +7,7 @@ import { Serĉilo } from "./Partoj/Serĉilo";
 import { Vorto } from "./Partoj/Vorto";
 import { Vortlisto } from "./Partoj/Vortlisto";
 import { TipoVortlisto } from "./Partoj/TipaVortlisto";
+import { KategoriaVortlisto } from "./Partoj/KategoriaVortlisto";
 
 function App() {
    return (
@@ -38,6 +39,9 @@ function App() {
                </Route>
                <Route exact path="/typedlist">
                   <TipoVortlisto />
+               </Route>
+               <Route exact path="/categorylist">
+                  <KategoriaVortlisto />
                </Route>
             </Switch>
          </div>

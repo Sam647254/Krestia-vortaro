@@ -20,6 +20,11 @@ export async function alportiĈiujnTipajn() {
    return (await respondo.data) as TipaVortlisto;
 }
 
+export async function alportiĈiujnKategoriojn() {
+   const respondo = await Axios.get("/api/vortlisto/kategorioj");
+   return (await respondo.data) as KategoriaVortlisto;
+}
+
 export interface VortoRezulto {
    malinflektitaVorto: string | undefined;
    plenigitaVorto: string | undefined;
@@ -51,4 +56,12 @@ export interface PlenaVortoRespondo extends VortoRespondo {
 
 export interface TipaVortlisto {
    [key: string]: VortoRespondo[];
+}
+
+export interface KategoriaVortlisto {
+   [key: string]: {
+      vortoj: VortoRespondo[];
+      subkategorioj: string[];
+      superkategorioj: string[];
+   }
 }
