@@ -65,3 +65,30 @@ export interface KategoriaVortlisto {
       superkategorioj: string[];
    }
 }
+
+export interface MalinflektitaVorto {
+   originalaVorto: EniraVorto;
+}
+
+export interface EniraVorto {
+   vico: number;
+   pozo: number;
+   vorto: string;
+}
+
+export interface Argumento {
+   vorto: ModifeblaVorto;
+}
+
+export interface ModifeblaVorto {
+   Kapo: MalinflektitaVorto;
+   Modifantoj: Modifanto[];
+}
+
+export type Modifanto = {
+   tipo: "Pridiranto";
+   argumento: Argumento;
+} | {
+   tipo: "EcoDe";
+   argumento: Argumento;
+};
