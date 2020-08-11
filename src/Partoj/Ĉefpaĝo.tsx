@@ -12,18 +12,18 @@ export function Ĉefpaĝo() {
             This website is the dictionary. You can use the search bar to look
             up words, even in their inflected forms, or view the full word list
             in the following formats:
-            <ul>
-               <li>
-                  <Link to="/wordlist">Full alphabetical list</Link>
-               </li>
-               <li>
-                  <Link to="/typedlist">Alphabetical grouped by word type</Link>
-               </li>
-               <li>
-                  <Link to="/categorylist">Alphabetical grouped by categories</Link>
-               </li>
-            </ul>
          </p>
+         <ul>
+            <li>
+               <Link to="/wordlist">Full alphabetical list</Link>
+            </li>
+            <li>
+               <Link to="/typedlist">Alphabetical grouped by word type</Link>
+            </li>
+            <li>
+               <Link to="/categorylist">Alphabetical grouped by categories</Link>
+            </li>
+         </ul>
          {/*<p>*/}
          {/*   For the reference grammar, please see the{" "}*/}
          {/*   <a href="http://5am.link/krestia-book">Krestia book.</a>*/}

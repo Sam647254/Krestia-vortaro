@@ -25,6 +25,15 @@ export async function alportiĈiujnKategoriojn() {
    return (await respondo.data) as KategoriaVortlisto;
 }
 
+export async function legi(eniro: string) {
+   const respondo = await Axios.post("/api/legi", { eniro });
+   if (respondo.status === 200) {
+      return (await respondo.data) as Rezulto;
+   } else {
+      throw respondo.data;
+   }
+}
+
 export interface VortoRezulto {
    malinflektitaVorto: string | undefined;
    plenigitaVorto: string | undefined;
@@ -92,3 +101,19 @@ export type Modifanto = {
    tipo: "EcoDe";
    argumento: Argumento;
 };
+
+export interface Rezulto {
+   frazoj: Predikato[];
+   argumentoj: Argumento[];
+}
+
+export interface Predikato {
+   kapo: Verbo;
+   argumentoj: Argumento[];
+}
+
+export interface Verbo {
+   vorto: ModifeblaVorto;
+}
+
+export type Eraro = [EniraVorto, string];

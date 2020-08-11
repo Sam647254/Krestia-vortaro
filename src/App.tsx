@@ -8,6 +8,7 @@ import { Vorto } from "./Partoj/Vorto";
 import { Vortlisto } from "./Partoj/Vortlisto";
 import { TipoVortlisto } from "./Partoj/TipaVortlisto";
 import { KategoriaVortlisto } from "./Partoj/KategoriaVortlisto";
+import {Legilo} from "./Partoj/Legilo";
 
 function App() {
    return (
@@ -42,6 +43,9 @@ function App() {
                </Route>
                <Route exact path="/categorylist">
                   <KategoriaVortlisto />
+               </Route>
+               <Route exact path="/parse/:eniro">
+                  <Legilo/>
                </Route>
             </Switch>
          </div>
