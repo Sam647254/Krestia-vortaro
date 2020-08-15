@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import "./Legilo.scss";
 import { legi, Modifanto, ModifeblaVorto, Predikato, Rezulto } from "../API";
+import { Vortlisto } from "./Vortlisto";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -29,11 +30,24 @@ export function Legilo() {
 function RezultoAfiŝo(rezulto: Rezulto) {
    return (
       <div>
-         <h2>Sentences</h2>
-         {rezulto.frazoj.map((frazo, i) => (
-            <FrazoAfiŝo frazo={frazo} key={i} />
-         ))}
-         <h2>Leftover arguments</h2>
+         {rezulto.frazoj.length > 0
+            ? [
+                 <h2>Sentences</h2>,
+                 rezulto.frazoj.map((frazo, i) => (
+                    <FrazoAfiŝo frazo={frazo} key={i} />
+                 ))
+              ]
+            : null}
+         {rezulto.argumentoj.length > 0
+            ? [
+                 <h2>Leftover arguments</h2>,
+                 rezulto.argumentoj.map((a, i) => (
+                    <span>
+                       <VortoAfiŝo key={i} vorto={a.vorto} />{" "}
+                    </span>
+                 ))
+              ]
+            : null}
       </div>
    );
 }
@@ -41,9 +55,13 @@ function RezultoAfiŝo(rezulto: Rezulto) {
 function FrazoAfiŝo({ frazo }: { frazo: Predikato }) {
    return (
       <div>
-         <span>{frazo.kapo.vorto.kapo.originalaVorto.vorto}</span>{" "}
+         <div className="predikata-vorto">
+            {frazo.kapo.vorto.kapo.originalaVorto.vorto}
+         </div>{" "}
          {frazo.argumentoj.map((a, i) => (
-            <VortoAfiŝo key={i} vorto={a.vorto} />
+            <div className="argumenta-vorto">
+               <VortoAfiŝo key={i} vorto={a.vorto} />
+            </div>
          ))}
       </div>
    );
@@ -61,7 +79,7 @@ function VortoAfiŝo({ vorto }: { vorto: ModifeblaVorto }) {
                </span>
             ) : (
                <span className="malkaŝita" onClick={() => setHidden(!kaŝita)}>
-                  [
+                  [{" "}
                   {vorto.modifantoj.map((m, i) => (
                      <ModifantoAfiŝo key={i} modifanto={m} />
                   ))}

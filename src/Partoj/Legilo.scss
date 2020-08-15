@@ -14,3 +14,23 @@
    display: block;
    margin: 0 auto;
 }
+
+.predikata-vorto {
+   display: inline-block;
+
+   &:after {
+      content: "Predicate";
+      display: block;
+      font-size: 50%;
+   }
+}
+
+.argumenta-vorto {
+   display: inline-block;
+
+   &:after {
+      content: "Argument";
+      display: block;
+      font-size: 50%;
+   }
+}
