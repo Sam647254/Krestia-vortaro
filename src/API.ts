@@ -90,7 +90,7 @@ export interface Argumento {
 }
 
 export interface ModifeblaVorto {
-   Kapo: MalinflektitaVorto;
+   kapo: MalinflektitaVorto;
    Modifantoj: Modifanto[];
 }
 
