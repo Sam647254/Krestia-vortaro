@@ -91,15 +91,15 @@ export interface Argumento {
 
 export interface ModifeblaVorto {
    kapo: MalinflektitaVorto;
-   Modifantoj: Modifanto[];
+   modifantoj: Modifanto[];
 }
 
 export type Modifanto = {
    tipo: "Pridiranto";
-   argumento: Argumento;
+   Argumento: Argumento;
 } | {
    tipo: "EcoDe";
-   argumento: Argumento;
+   Argumento: Argumento;
 };
 
 export interface Rezulto {

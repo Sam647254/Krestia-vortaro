@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./Legilo.scss";
-import {legi, ModifeblaVorto, Predikato, Rezulto} from "../API";
+import { legi, Modifanto, ModifeblaVorto, Predikato, Rezulto } from "../API";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -43,14 +43,47 @@ function FrazoAfiŝo({ frazo }: { frazo: Predikato }) {
       <div>
          <span>{frazo.kapo.vorto.kapo.originalaVorto.vorto}</span>{" "}
          {frazo.argumentoj.map((a, i) => (
-            <span key={i}>{a.vorto.kapo.originalaVorto.vorto}</span>
+            <VortoAfiŝo key={i} vorto={a.vorto} />
          ))}
       </div>
    );
 }
 
-function VortoAfiŝo({ vorto }: { vorto: ModifeblaVorto}) {
-   return <span>
+function VortoAfiŝo({ vorto }: { vorto: ModifeblaVorto }) {
+   const [kaŝita, setHidden] = useState(true);
+   return (
+      <span>
+         <span>{vorto.kapo.originalaVorto.vorto}</span>{" "}
+         {vorto.modifantoj.length > 0 ? (
+            kaŝita ? (
+               <span className="kaŝita" onClick={() => setHidden(!kaŝita)}>
+                  [...]
+               </span>
+            ) : (
+               <span className="malkaŝita" onClick={() => setHidden(!kaŝita)}>
+                  [
+                  {vorto.modifantoj.map((m, i) => (
+                     <ModifantoAfiŝo key={i} modifanto={m} />
+                  ))}
+                  ]
+               </span>
+            )
+         ) : null}
+      </span>
+   );
+}
 
-   </span>;
+function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }) {
+   switch (modifanto.tipo) {
+      case "Pridiranto": {
+         return <VortoAfiŝo vorto={modifanto.Argumento.vorto} />;
+      }
+      case "EcoDe": {
+         return (
+            <span>
+               de: <VortoAfiŝo vorto={modifanto.Argumento.vorto} />
+            </span>
+         );
+      }
+   }
 }
