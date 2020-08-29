@@ -54,7 +54,7 @@ function RezultoAfiŝo(rezulto: Rezulto) {
 
 function FrazoAfiŝo({ frazo }: { frazo: Predikato }) {
    return (
-      <div>
+      <div className="predikato">
          <div className="predikata-vorto">
             {frazo.kapo.vorto.kapo.originalaVorto.vorto}
          </div>{" "}
