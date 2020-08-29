@@ -36,6 +36,8 @@ const klaso: Desegnilo = (ctx, alteco, larĝeco, x, y) => {
    ctx.moveTo(x + larĝeco, y);
    ctx.lineTo(x, y + alteco / 2);
    ctx.lineTo(x + larĝeco, y + alteco);
+   ctx.moveTo(x, y + alteco / 2);
+   ctx.lineTo(x + larĝeco, y + alteco / 2);
 };
 
 const desegniloj = new Map<string, Desegnilo>([
