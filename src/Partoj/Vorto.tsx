@@ -46,8 +46,6 @@ const inflekcioj = new Map(
       FinitaOkazo: "Complete occurrence",
       Hipoteza: "Hypothetical",
       Kvalico: "Quality",
-      Desiderativo: "Desiderative",
-      Hortativo: "Hortative",
    })
 );
 

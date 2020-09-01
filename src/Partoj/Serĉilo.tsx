@@ -13,11 +13,11 @@ export function Serĉilo() {
                 event.preventDefault();
                 history.push(`/search/${serĉiTeksto.current!.value}`);
              }}/>
-      <input type="submit" className="serĉiButono"
-             onClick={async event => {
-                event.preventDefault();
-                history.push(`/parse/${encodeURIComponent(serĉiTeksto.current!.value)}`)
-             }}
-             value="Parse"/>
+      {/*<input type="submit" className="serĉiButono"*/}
+      {/*       onClick={async event => {*/}
+      {/*          event.preventDefault();*/}
+      {/*          history.push(`/parse/${encodeURIComponent(serĉiTeksto.current!.value)}`)*/}
+      {/*       }}*/}
+      {/*       value="Parse"/>*/}
    </form>;
 }
