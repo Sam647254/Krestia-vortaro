@@ -30,37 +30,17 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
-            <h3>v0.2 (work in progress)</h3>
+            <h3>v0.2 (2020/10/09)</h3>
             <ul>
+               <li>Added word lists grouped by word type and categories</li>
                <li>Added slot information to verbs</li>
-               <li>Added Blissymbols to dictionary entries</li>
-               <li>(Recreated the lexicon)</li>
+               <li>Restructured the lexicon</li>
             </ul>
             <h3>v0.1 (2020/04/05)</h3>
             <ul>
                <li>Initial public release</li>
             </ul>
             <div className="streko" />
-            <p>This website uses Blissymbols.</p>
-            <p className="malgranda">
-               Blissymbol resources based on the Blissymbolics Communication
-               International Authorized Vocabulary (BCI-AV) are licensed under a
-               Creative Commons Attribution-Share Alike 3.0 Unported License.
-               Based on a work by Blissymbolics Communication International
-               (BCI) available via{" "}
-               <a
-                  href="http://blissymbolics.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-               >
-                  www.blissymbolics.org.
-               </a>{" "}
-               (An alternative royalty based supported license option for
-               commercial distribution of Blissymbol resources is also
-               available. Please contact BCI at{" "}
-               <a href="mailto:bic@blissymbolics.org">bci@blissymbolics.org</a>{" "}
-               for further details.)
-            </p>
             <p>
                The content of the dictionary is released into the public domain.
                The{" "}
