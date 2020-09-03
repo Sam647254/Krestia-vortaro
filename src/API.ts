@@ -43,6 +43,7 @@ export interface VortoRezulto {
    glosajVortoj: string[] | undefined;
    glosajŜtupoj: string[][] | undefined;
    bazajVortoj: string[] | undefined;
+   nombroRezulto: number | undefined;
 }
 
 export interface VortoRespondo {

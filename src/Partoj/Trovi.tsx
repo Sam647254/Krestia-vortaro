@@ -53,7 +53,7 @@ const inflekcioj = new Map(
       AktualaOkazo: "COCR",
       FinitaOkazo: "FOCR",
       UnueUjo2: "FST2",
-      UnueUjo3: "FST3"
+      UnueUjo3: "FST3",
    })
 );
 
@@ -64,7 +64,7 @@ interface Params {
 function inflektajŜtupoj(rezulto: VortoRezulto) {
    return `It is inflected as ${rezulto.gloso}-${rezulto.malinflektajŜtupoj
       ?.reverse()
-      .map(ŝ => inflekcioj.get(ŝ) || ŝ)
+      .map((ŝ) => inflekcioj.get(ŝ) || ŝ)
       .join("-")}.`;
 }
 
@@ -100,6 +100,13 @@ function specialaRezulto(rezulto: VortoRezulto, peto: string) {
          </span>
       );
    }
+   if (rezulto.nombroRezulto != null) {
+      return (
+         <span>
+            {peto} is the number {rezulto.nombroRezulto}.
+         </span>
+      );
+   }
    return null;
 }
 
@@ -112,7 +119,7 @@ export function Trovi() {
 
    useEffect(() => {
       setSearchState("trovado");
-      trovi(peto).then(rezulto => {
+      trovi(peto).then((rezulto) => {
          setSearchState("trovita");
          setResult(rezulto);
       });
@@ -123,7 +130,9 @@ export function Trovi() {
    if (
       ŝtato === "trovado" ||
       rezulto == null ||
-      (glosoPeto.length > 1 && (rezulto.glosajVortoj != null) && glosoPeto.length > (rezulto.glosajVortoj.length || 0))
+      (glosoPeto.length > 1 &&
+         rezulto.glosajVortoj != null &&
+         glosoPeto.length > (rezulto.glosajVortoj.length || 0))
    )
       return <div>Searching...</div>;
 
@@ -132,7 +141,8 @@ export function Trovi() {
       rezulto.rezultoj.length === 0 &&
       rezulto.plenigitaVorto == null &&
       rezulto.malinflektitaVorto == null &&
-      rezulto.glosajVortoj == null
+      rezulto.glosajVortoj == null &&
+      rezulto.nombroRezulto == null
    ) {
       return <div>No results for "{peto}".</div>;
    }
@@ -166,7 +176,7 @@ export function Trovi() {
                            {rezulto?.glosajŜtupoj?.length! > 0
                               ? rezulto
                                    ?.glosajŜtupoj![i]?.reverse()
-                                   .map(ŝ => `-${inflekcioj.get(ŝ) || ŝ}`)
+                                   .map((ŝ) => `-${inflekcioj.get(ŝ) || ŝ}`)
                                    .join("")
                               : null}
                         </td>
@@ -181,12 +191,8 @@ export function Trovi() {
    return (
       <div>
          <div className="peto">Search results for "{peto}":</div>
-         {speciala == null ? null : (
-            <div>
-               <span>Special result: </span> {speciala}
-            </div>
-         )}
-         {rezulto.rezultoj.map(r => (
+         {speciala == null ? null : <div>{speciala}</div>}
+         {rezulto.rezultoj.map((r) => (
             <div className="rezulto" key={r.vorto}>
                <span className="rezulto-vorto">
                   <Link to={`/word/${r.vorto}`}>{r.vorto}</Link>

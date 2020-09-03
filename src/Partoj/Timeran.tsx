@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 import "./Timeran.scss";
 
@@ -50,7 +50,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.moveTo(x + larĝeco / 3, y);
          ctx.lineTo(x + larĝeco / 3, y + alteco);
-      }
+      },
    ],
    ["m", m],
    [
@@ -59,7 +59,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x + larĝeco, y);
          ctx.lineTo(x, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
-      }
+      },
    ],
    [
       "t",
@@ -67,7 +67,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.moveTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
-      }
+      },
    ],
    [
       "d",
@@ -84,7 +84,7 @@ const desegniloj = new Map<string, Desegnilo>([
             ctx.moveTo(x + (larĝeco * 2) / 3, y);
             ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
          }
-      }
+      },
    ],
    [
       "n",
@@ -93,7 +93,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "s",
@@ -103,7 +103,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x, y + alteco);
          ctx.moveTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "l",
@@ -112,7 +112,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x, y + alteco);
          ctx.lineTo(x, y);
-      }
+      },
    ],
    [
       "r",
@@ -120,7 +120,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.lineTo(x, y);
-      }
+      },
    ],
    [
       "j",
@@ -130,7 +130,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    ["k", k],
    [
@@ -143,7 +143,7 @@ const desegniloj = new Map<string, Desegnilo>([
             x + (larĝeco < 10 ? larĝeco / 5 : (larĝeco * 2) / 3),
             y + alteco
          );
-      }
+      },
    ],
    [
       "w",
@@ -158,7 +158,7 @@ const desegniloj = new Map<string, Desegnilo>([
             0,
             360
          );
-      }
+      },
    ],
    [
       "h",
@@ -166,7 +166,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    ["i", p],
    [
@@ -175,7 +175,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x, y + alteco);
          ctx.moveTo(x, y + alteco / 2);
          ctx.lineTo(x + larĝeco, y + alteco / 2);
-      }
+      },
    ],
    ["a", m],
    ["u", k],
@@ -186,7 +186,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco / 2);
          ctx.moveTo(x + larĝeco, y);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "ɒ",
@@ -194,7 +194,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x + larĝeco, y);
-      }
+      },
    ],
    [
       "pl",
@@ -205,7 +205,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
-      }
+      },
    ],
    [
       "pr",
@@ -215,7 +215,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo((x * 3) / 4, y + alteco);
          ctx.lineTo(x / 2, y);
-      }
+      },
    ],
    [
       "bl",
@@ -228,7 +228,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
          ctx.moveTo(x + larĝeco / 3, y);
          ctx.lineTo(x + larĝeco / 3, y + alteco);
-      }
+      },
    ],
    [
       "br",
@@ -240,7 +240,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
          ctx.moveTo(x + larĝeco / 3, y);
          ctx.lineTo(x + larĝeco / 3, y + alteco);
-      }
+      },
    ],
    [
       "tl",
@@ -250,7 +250,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 3, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
-      }
+      },
    ],
    [
       "tr",
@@ -259,7 +259,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x + larĝeco / 4, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.lineTo(x + (larĝeco * 3) / 4, y);
-      }
+      },
    ],
    [
       "dl",
@@ -272,7 +272,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
-      }
+      },
    ],
    [
       "dr",
@@ -283,7 +283,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
-      }
+      },
    ],
    [
       "kl",
@@ -294,7 +294,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x, y);
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "kr",
@@ -304,7 +304,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x, y);
          ctx.lineTo(x + larĝeco / 4, y + alteco);
          ctx.lineTo(x + larĝeco / 2, y);
-      }
+      },
    ],
    [
       "gl",
@@ -317,7 +317,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.moveTo(x + (larĝeco * 2) / 3, y);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
-      }
+      },
    ],
    [
       "gr",
@@ -329,7 +329,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + (larĝeco * 2) / 3, y);
          ctx.moveTo(x + (larĝeco * 2) / 3, y);
          ctx.lineTo(x + (larĝeco * 2) / 3, y + alteco);
-      }
+      },
    ],
    ["NombrigeblaKlaso", klaso],
    ["NenombrigeblaKlaso", klaso],
@@ -348,7 +348,7 @@ const desegniloj = new Map<string, Desegnilo>([
          );
          ctx.moveTo(x, y + alteco / 2);
          ctx.lineTo(x + larĝeco, y + alteco / 2);
-      }
+      },
    ],
    [
       "AntaŭNombrigeblaEco",
@@ -359,7 +359,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.moveTo(x, y + alteco / 2);
          ctx.lineTo(x + larĝeco, y + alteco / 2);
-      }
+      },
    ],
    [
       "MalplenaVerbo",
@@ -369,7 +369,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x, y + alteco / 2);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco / 2);
-      }
+      },
    ],
    [
       "NetransitivaVerbo",
@@ -378,7 +378,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco / 2);
          ctx.moveTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
-      }
+      },
    ],
    [
       "TransitivaVerbo",
@@ -386,7 +386,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "NedirektaTransitivaVerbo",
@@ -396,7 +396,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "OblikaNetransitivaVerbo",
@@ -407,7 +407,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco / 2);
          ctx.moveTo(x + larĝeco / 2, y + alteco / 2);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
-      }
+      },
    ],
    [
       "OblikaTransitivaVerbo",
@@ -420,7 +420,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "NedirektaNetransitivaVerbo",
@@ -431,7 +431,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y + alteco);
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "DutransitivaVerbo",
@@ -441,7 +441,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.moveTo(x, y + alteco / 2);
          ctx.lineTo(x + larĝeco, y + alteco / 2);
-      }
+      },
    ],
    [
       "Lokokupilo",
@@ -451,7 +451,7 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco, y);
          ctx.moveTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco / 2, y + alteco);
-      }
+      },
    ],
    [
       "Pridiranto",
@@ -460,14 +460,14 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.lineTo(x + larĝeco / 2, y);
          ctx.lineTo(x + larĝeco, y + alteco);
          ctx.lineTo(x, y + alteco);
-      }
+      },
    ],
    [
       "MalantaŭModifanto",
       (ctx, alteco, larĝeco, x, y) => {
          ctx.lineTo(x + larĝeco, y);
          ctx.lineTo(x + larĝeco, y + alteco);
-      }
+      },
    ],
    [
       "AntaŭModifanto",
@@ -475,8 +475,14 @@ const desegniloj = new Map<string, Desegnilo>([
          ctx.moveTo(x, y + alteco);
          ctx.lineTo(x, y);
          ctx.lineTo(x + larĝeco, y);
-      }
-   ]
+      },
+   ],
+   [
+      "Cifero",
+      (ctx, alteco, larĝeco, x, y) => {
+         ctx.lineTo(x, y + alteco);
+      },
+   ],
 ]);
 
 const vokaloj = new Set(["i", "e", "a", "u", "o", "ɒ"]);
@@ -488,7 +494,7 @@ const blissAlto = 172;
 const blissMalalto = 343;
 const blissAlteco = blissMalalto - blissAlto;
 
-export function Timeran({alteco, silaboj, bliss}: Props) {
+export function Timeran({ alteco, silaboj, bliss }: Props) {
    const kanvaso = React.createRef<HTMLCanvasElement>();
    const duonaAlteco = alteco / 2;
    const plenaAlteco = alteco + spaceto;
@@ -502,7 +508,7 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
          ctx.beginPath();
          let x = 5,
             y = 5;
-         silaboj.forEach(silabo => {
+         silaboj.forEach((silabo) => {
             vojo.moveTo(x, y);
             switch (silabo.length) {
                case 1:
@@ -652,10 +658,18 @@ export function Timeran({alteco, silaboj, bliss}: Props) {
             ctx.lineWidth = 10;
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
-            desegniloj.get(silaboj[silaboj.length - 1])
-               ?.call(null, vojo, blissAlteco, blissAlteco / 3, blissLarĝeco + spaceto * 3, blissAlto);
+            desegniloj
+               .get(silaboj[silaboj.length - 1])
+               ?.call(
+                  null,
+                  vojo,
+                  blissAlteco,
+                  blissAlteco / 3,
+                  blissLarĝeco + spaceto * 3,
+                  blissAlto
+               );
             ctx.stroke(vojo);
-         })
+         });
       }
    }, [bliss, duonaAlteco, kanvaso, plenaAlteco, silaboj]);
 
