@@ -86,8 +86,17 @@ export interface EniraVorto {
    vorto: string;
 }
 
-export interface Argumento {
+export type Argumento = {
+   tipo: "ArgumentaVorto";
    vorto: ModifeblaVorto;
+} | {
+   tipo: "ene";
+   predikato: Predikato;
+   ene: ModifeblaVorto;
+} | {
+   tipo: "mine";
+   predikato: Predikato;
+   mine: MalinflektitaVorto;
 }
 
 export interface ModifeblaVorto {
@@ -97,10 +106,14 @@ export interface ModifeblaVorto {
 
 export type Modifanto = {
    tipo: "Pridiranto";
-   Argumento: Argumento;
+   argumento: Argumento;
 } | {
    tipo: "EcoDe";
-   Argumento: Argumento;
+   argumento: Argumento;
+} | {
+   tipo: "ModifantoKunFrazo";
+   modifanto: string;
+   frazo: Predikato;
 };
 
 export interface Rezulto {

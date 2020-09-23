@@ -15,16 +15,19 @@
    margin: 0 auto;
 }
 
-.predikata-vorto {
+.verbo {
    display: inline-block;
    margin-right: 4px;
-   font-weight: bold;
 
    &:after {
       content: "Predicate";
       display: block;
       font-size: 60%;
    }
+}
+
+.predikata-vorto {
+   font-weight: bold;
 }
 
 .argumenta-vorto {
@@ -40,4 +43,5 @@
 
 .predikato {
    margin-bottom: 10px;
+   display: block;
 }
