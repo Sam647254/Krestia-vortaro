@@ -54,6 +54,8 @@ const inflekcioj = new Map(
       FinitaOkazo: "FOCR",
       UnueUjo2: "FST2",
       UnueUjo3: "FST3",
+      Intenco: "INTN",
+      Kvalito: "QUAL",
    })
 );
 
