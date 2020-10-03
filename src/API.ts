@@ -92,7 +92,7 @@ export type Argumento = {
 } | {
    tipo: "ene";
    predikato: Predikato;
-   ene: ModifeblaVorto;
+   ene: MalinflektitaVorto;
 } | {
    tipo: "mine";
    predikato: Predikato;
@@ -114,6 +114,9 @@ export type Modifanto = {
    tipo: "ModifantoKunFrazo";
    modifanto: string;
    frazo: Predikato;
+} | {
+   tipo: "SimplaModifanto";
+   modifanto: string;
 };
 
 export interface Rezulto {

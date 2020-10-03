@@ -49,7 +49,11 @@ function RezultoAfiŝo(rezulto: Rezulto) {
             ? [
                  <h2>Leftover arguments</h2>,
                  rezulto.argumentoj.map((a, i) => (
-                    <ArgumentoAfiŝo key={i} argumento={a} montriSubtitolo={false} />
+                    <ArgumentoAfiŝo
+                       key={i}
+                       argumento={a}
+                       montriSubtitolo={false}
+                    />
                  )),
               ]
             : null}
@@ -57,31 +61,55 @@ function RezultoAfiŝo(rezulto: Rezulto) {
    );
 }
 
-function ArgumentoAfiŝo({ argumento, montriSubtitolo }: { argumento: Argumento, montriSubtitolo: boolean }) {
+function ArgumentoAfiŝo({
+   argumento,
+   montriSubtitolo,
+}: {
+   argumento: Argumento;
+   montriSubtitolo: boolean;
+}) {
+   const [kaŝita, setHidden] = useState(true);
    switch (argumento.tipo) {
       case "ene":
-         return null;
+      case "mine":
+         return (
+            <span className={montriSubtitolo ? "argumenta-vorto" : ""}>
+               <VortoAfiŝo
+                  vorto={{
+                     kapo:
+                        argumento.tipo === "ene"
+                           ? argumento.ene
+                           : argumento.mine,
+                     modifantoj: [],
+                  }}
+               />{" "}
+               {kaŝita ? (
+                  <span onClick={() => setHidden(!kaŝita)}>(...)</span>
+               ) : (
+                  <FrazoAfiŝo frazo={argumento.predikato} subfrazo />
+               )}
+            </span>
+         );
       case "ArgumentaVorto":
          return (
             <span className={montriSubtitolo ? "argumenta-vorto" : ""}>
                <VortoAfiŝo vorto={argumento.vorto} />{" "}
             </span>
          );
-      case "mine":
-         return (
-            <span className={montriSubtitolo ? "argumenta-vorto" : ""}>
-               <VortoAfiŝo vorto={{ kapo: argumento.mine, modifantoj: [] }} />(
-               <FrazoAfiŝo frazo={argumento.predikato} subfrazo />
-            </span>
-         );
    }
 }
 
-function FrazoAfiŝo({ frazo, subfrazo }: { frazo: Predikato, subfrazo: boolean }) {
+function FrazoAfiŝo({
+   frazo,
+   subfrazo,
+}: {
+   frazo: Predikato;
+   subfrazo: boolean;
+}) {
    return (
       <span className={subfrazo ? "" : "predikato"}>
          <span className={subfrazo ? "" : "verbo"}>
-            <VortoAfiŝo className={subfrazo ? "" : "predikata-vorto"} vorto={frazo.kapo.vorto} />
+            <VortoAfiŝo className="predikata-vorto" vorto={frazo.kapo.vorto} />
          </span>{" "}
          {frazo.argumentoj.map((a, i) => (
             <ArgumentoAfiŝo argumento={a} key={i} montriSubtitolo={!subfrazo} />
@@ -90,7 +118,13 @@ function FrazoAfiŝo({ frazo, subfrazo }: { frazo: Predikato, subfrazo: boolean 
    );
 }
 
-function VortoAfiŝo({ vorto, className = "" }: { vorto: ModifeblaVorto, className?: string | undefined }) {
+function VortoAfiŝo({
+   vorto,
+   className = "",
+}: {
+   vorto: ModifeblaVorto;
+   className?: string | undefined;
+}) {
    const [kaŝita, setHidden] = useState(true);
    return (
       <span>
@@ -101,11 +135,11 @@ function VortoAfiŝo({ vorto, className = "" }: { vorto: ModifeblaVorto, classNa
                   [...]
                </span>
             ) : (
-               <span className="malkaŝita" onClick={() => setHidden(!kaŝita)}>
+               <span className="malkaŝita">
                   [{" "}
                   {vorto.modifantoj.map((m, i) => (
                      <ModifantoAfiŝo key={i} modifanto={m} />
-                  ))}
+                  ))}{" "}
                   ]
                </span>
             )
@@ -115,23 +149,43 @@ function VortoAfiŝo({ vorto, className = "" }: { vorto: ModifeblaVorto, classNa
 }
 
 function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
+   const [kaŝita, setHidden] = useState(true);
    switch (modifanto.tipo) {
       case "Pridiranto": {
-         return <ArgumentoAfiŝo argumento={modifanto.argumento} montriSubtitolo={false} />;
+         return (
+            <ArgumentoAfiŝo
+               argumento={modifanto.argumento}
+               montriSubtitolo={false}
+            />
+         );
       }
       case "EcoDe": {
          return (
             <span>
-               de: <ArgumentoAfiŝo argumento={modifanto.argumento} montriSubtitolo={false} />
+               de:{" "}
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento}
+                  montriSubtitolo={false}
+               />
             </span>
          );
       }
       case "ModifantoKunFrazo": {
-         return (
+         return kaŝita ? (
             <span>
-               {modifanto.modifanto}(<FrazoAfiŝo frazo={modifanto.frazo} subfrazo/>)
+               {modifanto.modifanto}{" "}
+               <span onClick={() => setHidden(!kaŝita)}>(...)</span>
+            </span>
+         ) : (
+            <span>
+               {modifanto.modifanto} ({" "}
+               <FrazoAfiŝo frazo={modifanto.frazo} subfrazo /> )
             </span>
          );
       }
+      case "SimplaModifanto": {
+         return <span>{modifanto.modifanto} </span>;
+      }
    }
+   debugger;
 }
