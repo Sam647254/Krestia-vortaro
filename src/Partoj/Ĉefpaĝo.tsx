@@ -30,6 +30,10 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
+            <h3>v0.2.1</h3>
+            <ul>
+               <li>Updated colour scheme to Solarized</li>
+            </ul>
             <h3>v0.2 (2020/10/09)</h3>
             <ul>
                <li>Added word lists grouped by word type and categories</li>

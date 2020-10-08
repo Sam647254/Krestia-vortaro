@@ -643,6 +643,7 @@ export function Timeran({ alteco, silaboj, bliss }: Props) {
          ctx.lineCap = "round";
          ctx.lineWidth = 4.7;
          ctx.lineJoin = "round";
+         ctx.strokeStyle = "#839496";
          ctx.stroke(vojo);
       } else {
          const fonto = `/api/bliss/${bliss[0]}`;
