@@ -32,7 +32,7 @@ export function Ĉefpaĝo() {
             <h2>Changelog</h2>
             <h3>v0.2.1</h3>
             <ul>
-               <li>Updated colour scheme to Solarized</li>
+               <li>Updated colour scheme</li>
             </ul>
             <h3>v0.2 (2020/10/09)</h3>
             <ul>

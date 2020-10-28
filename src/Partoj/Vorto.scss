@@ -1,3 +1,5 @@
+@import "../koloroj";
+
 h2.vorto {
    font-family: 'Nunito', sans-serif;
    font-size: 3em;
@@ -19,15 +21,15 @@ h2.vorto {
 
 .inflekcio-tabelo {
    padding: 3px;
-   border: #657b83 solid 2px;
+   border: $neĝo solid 2px;
 
    thead tr th {
-      border-bottom: #657b83 solid 1px;
+      border-bottom: $neĝo solid 1px;
    }
 
    tbody tr {
       &:nth-child(even) {
-         background-color: #83949615;
+         background-color: $neĝo15;
       }
    }
 

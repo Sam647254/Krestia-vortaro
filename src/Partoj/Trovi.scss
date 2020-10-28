@@ -1,3 +1,5 @@
+@import "../koloroj";
+
 .peto {
    margin-bottom: 30px;
 }
@@ -13,11 +15,11 @@
 }
 
 .gloso-tabelo {
-   border: #343a40 solid 2px;
+   border: $neĝo solid 2px;
    margin: 30px auto;
 
    thead th {
-      border-bottom: #343a40 solid 1px;
+      border-bottom: $neĝo solid 1px;
    }
 
    th, td {

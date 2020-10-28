@@ -1,10 +1,12 @@
+@import "../koloroj";
+
 .legilo {
    margin-top: 20px;
 }
 
 .legilo-eniro {
    width: 700px;
-   border: #343A40 solid 2px;
+   border: $neĝo solid 2px;
    padding: 7px;
    font-family: "Lato", sans-serif;
    margin-bottom: 10px;

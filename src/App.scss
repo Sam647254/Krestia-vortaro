@@ -1,9 +1,8 @@
-$base0: #839496;
-$base03: #002b36;
+@import "koloroj";
 
 html {
-   background-color: $base03;
-   color: $base0;
+   background-color: $revo;
+   color: $neĝo;
 }
 
 .titolo {
@@ -27,9 +26,9 @@ html {
 }
 
 .serĉiTeksto {
-   border: $base0 solid 2px;
-   background-color: $base03;
-   color: $base0;
+   border: $neĝo solid 2px;
+   background-color: $revo;
+   color: $neĝo;
    padding: 7px;
    width: 177px;
 }
@@ -37,9 +36,9 @@ html {
 .serĉiButono {
    margin-left: 10px;
    padding: 7px;
-   border: $base0 solid 2px;
+   border: $neĝo solid 2px;
    background-color: transparent;
-   color: $base0;
+   color: $neĝo;
 }
 
 .enhavo {
@@ -53,14 +52,14 @@ input {
 
 a {
    text-decoration: none;
-   text-shadow: 0 0 4px $base0;
+   text-shadow: 0 0 4px $neĝo;
 
    &:link, &:visited {
-      color: $base0;
+      color: $neĝo;
    }
 
    &:hover {
-      text-shadow: 0 0 8px $base0;
+      text-shadow: 0 0 8px $neĝo;
    }
 }
 
