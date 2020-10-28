@@ -187,5 +187,5 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
          return <span>{modifanto.modifanto} </span>;
       }
    }
-   debugger;
+   throw new Error(`Cannot render ${modifanto.tipo}`);
 }

@@ -117,7 +117,22 @@ export type Modifanto = {
 } | {
    tipo: "SimplaModifanto";
    modifanto: string;
-};
+} | {
+   tipo: "Mine";
+   frazo: Predikato;
+} | {
+   tipo: "Ene";
+   frazo: Predikato;
+} | {
+   tipo: "Keni";
+   argumento1: Argumento;
+   argumento2: Argumento;
+} | {
+   tipo: "Pini";
+   argumento1: Argumento;
+   argumento2: Argumento;
+   argumento3: Argumento;
+}
 
 export interface Rezulto {
    frazoj: Predikato[];
