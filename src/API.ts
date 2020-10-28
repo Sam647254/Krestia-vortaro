@@ -115,14 +115,18 @@ export type Modifanto = {
    modifanto: string;
    frazo: Predikato;
 } | {
+   tipo: "ModifantoKunArgumentoj";
+   modifanto: string;
+   argumento: Argumento[];
+} | {
    tipo: "SimplaModifanto";
    modifanto: string;
 } | {
    tipo: "Mine";
-   frazo: Predikato;
+   predikato: Predikato;
 } | {
    tipo: "Ene";
-   frazo: Predikato;
+   predikato: Predikato;
 } | {
    tipo: "Keni";
    argumento1: Argumento;

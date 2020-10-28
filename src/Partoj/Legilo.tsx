@@ -186,6 +186,57 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
       case "SimplaModifanto": {
          return <span>{modifanto.modifanto} </span>;
       }
+      case "ModifantoKunArgumentoj": {
+         return modifanto.argumento.length > 0 ? (
+            <span>
+               {modifanto.modifanto} (
+               {modifanto.argumento.map((argumento) => (
+                  <ArgumentoAfiŝo
+                     argumento={argumento}
+                     montriSubtitolo={false}
+                  />
+               ))}
+               )
+            </span>
+         ) : (
+            <span>{modifanto.modifanto} </span>
+         );
+      }
+      case "Keni": {
+         return (
+            <span>
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento1}
+                  montriSubtitolo={false}
+               />
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento2}
+                  montriSubtitolo={false}
+               />
+            </span>
+         );
+      }
+      case "Pini": {
+         return (
+            <span>
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento1}
+                  montriSubtitolo={false}
+               />
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento2}
+                  montriSubtitolo={false}
+               />
+               <ArgumentoAfiŝo
+                  argumento={modifanto.argumento3}
+                  montriSubtitolo={false}
+               />
+            </span>
+         );
+      }
+      case "Ene":
+      case "Mine": {
+         return <FrazoAfiŝo frazo={modifanto.predikato} subfrazo />;
+      }
    }
-   throw new Error(`Cannot render ${modifanto.tipo}`);
 }
