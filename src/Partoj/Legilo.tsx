@@ -115,16 +115,18 @@ function FrazoAfiŝo({
    const [hover, setHover] = useState(false);
    const [childHover, setChildHover] = useState(false);
    return (
-      <span className={subfrazo ? "" : "predikato"}>
-         <span
-            className={[
-               subfrazo ? "" : "verbo",
-               hover ? "hover-parent" : "",
-               childHover ? "hover-child" : "",
-            ].join(" ")}
-         >
+      <span
+         className={subfrazo ? "" : "predikato"}
+         onMouseOver={() => onHover?.(true)}
+         onMouseOut={() => onHover?.(false)}
+      >
+         <span className={subfrazo ? "" : "verbo"}>
             <VortoAfiŝo
-               className="predikata-vorto"
+               className={[
+                  "predikata-vorto",
+                  hover ? "hover-parent" : "",
+                  childHover ? "hover-child" : "",
+               ].join(" ")}
                vorto={frazo.kapo.vorto}
                onHover={setHover}
             />
@@ -151,17 +153,26 @@ function VortoAfiŝo({
    onHover?: (hover: boolean) => void;
 }) {
    const [kaŝita, setHidden] = useState(true);
+   const [hover, setHover] = useState(false);
    return (
-      <span>
-         <span className={className}>{vorto.kapo.originalaVorto.vorto}</span>{" "}
+      <span
+         onMouseOver={() => onHover?.(true)}
+         onMouseOut={() => onHover?.(false)}
+      >
+         <span
+            className={className + ` ${hover ? "hover-self" : ""}`}
+            onMouseOver={() => {
+               setHover(true);
+            }}
+            onMouseOut={() => {
+               setHover(false);
+            }}
+         >
+            {vorto.kapo.originalaVorto.vorto}
+         </span>{" "}
          {vorto.modifantoj.length > 0 ? (
             kaŝita ? (
-               <span
-                  className="kaŝita"
-                  onClick={() => setHidden(!kaŝita)}
-                  onMouseEnter={() => onHover?.(true)}
-                  onMouseLeave={() => onHover?.(false)}
-               >
+               <span className="kaŝita" onClick={() => setHidden(!kaŝita)}>
                   [...]
                </span>
             ) : (
