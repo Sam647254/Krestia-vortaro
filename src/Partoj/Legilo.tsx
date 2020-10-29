@@ -76,7 +76,11 @@ function ArgumentoAfiŝo({
       case "ene":
       case "mine":
          return (
-            <span className={montriSubtitolo ? "argumenta-vorto" : ""}>
+            <span
+               className={montriSubtitolo ? "argumenta-vorto" : ""}
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
                <VortoAfiŝo
                   vorto={{
                      kapo:
@@ -124,8 +128,8 @@ function FrazoAfiŝo({
             <VortoAfiŝo
                className={[
                   "predikata-vorto",
-                  hover ? "hover-parent" : "",
-                  childHover ? "hover-child" : "",
+                  hover ? "hover-self" : "",
+                  childHover ? "hover-parent" : "",
                ].join(" ")}
                vorto={frazo.kapo.vorto}
                onHover={setHover}
@@ -156,8 +160,12 @@ function VortoAfiŝo({
    const [hover, setHover] = useState(false);
    return (
       <span
-         onMouseOver={() => onHover?.(true)}
-         onMouseOut={() => onHover?.(false)}
+         onMouseOver={() => {
+            if (!kaŝita) onHover?.(true);
+         }}
+         onMouseOut={() => {
+            if (!kaŝita) onHover?.(false);
+         }}
       >
          <span
             className={className + ` ${hover ? "hover-self" : ""}`}
