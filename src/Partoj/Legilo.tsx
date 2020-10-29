@@ -132,17 +132,21 @@ function FrazoAfiŝo({
                   childHover ? "hover-parent" : "",
                ].join(" ")}
                vorto={frazo.kapo.vorto}
-               onHover={setHover}
+               onHover={(hover) => {
+                  setHover(hover);
+               }}
             />
          </span>{" "}
-         {frazo.argumentoj.map((a, i) => (
-            <ArgumentoAfiŝo
-               argumento={a}
-               key={i}
-               montriSubtitolo={!subfrazo}
-               onHover={setChildHover}
-            />
-         ))}
+         <span className={hover ? "hover-child" : ""}>
+            {frazo.argumentoj.map((a, i) => (
+               <ArgumentoAfiŝo
+                  argumento={a}
+                  key={i}
+                  montriSubtitolo={!subfrazo}
+                  onHover={setChildHover}
+               />
+            ))}
+         </span>
       </span>
    );
 }
@@ -161,10 +165,10 @@ function VortoAfiŝo({
    return (
       <span
          onMouseOver={() => {
-            if (!kaŝita) onHover?.(true);
+            onHover?.(true);
          }}
          onMouseOut={() => {
-            if (!kaŝita) onHover?.(false);
+            onHover?.(false);
          }}
       >
          <span
@@ -178,21 +182,23 @@ function VortoAfiŝo({
          >
             {vorto.kapo.originalaVorto.vorto}
          </span>{" "}
-         {vorto.modifantoj.length > 0 ? (
-            kaŝita ? (
-               <span className="kaŝita" onClick={() => setHidden(!kaŝita)}>
-                  [...]
-               </span>
-            ) : (
-               <span className="malkaŝita">
-                  [{" "}
-                  {vorto.modifantoj.map((m, i) => (
-                     <ModifantoAfiŝo key={i} modifanto={m} />
-                  ))}{" "}
-                  ]
-               </span>
-            )
-         ) : null}
+         <span>
+            {vorto.modifantoj.length > 0 ? (
+               kaŝita ? (
+                  <span className="kaŝita" onClick={() => setHidden(!kaŝita)}>
+                     [...]
+                  </span>
+               ) : (
+                  <span className="malkaŝita">
+                     [{" "}
+                     {vorto.modifantoj.map((m, i) => (
+                        <ModifantoAfiŝo key={i} modifanto={m} />
+                     ))}{" "}
+                     ]
+                  </span>
+               )
+            ) : null}
+         </span>
       </span>
    );
 }
