@@ -119,9 +119,6 @@ export type Modifanto = {
    modifanto: string;
    argumento: Argumento[];
 } | {
-   tipo: "SimplaModifanto";
-   modifanto: string;
-} | {
    tipo: "Mine";
    predikato: Predikato;
 } | {

@@ -9,7 +9,6 @@ import {
    Predikato,
    Rezulto,
 } from "../API";
-import { Vortlisto } from "./Vortlisto";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -77,7 +76,6 @@ function ArgumentoAfiŝo({
       case "mine":
          return (
             <span
-               className={montriSubtitolo ? "argumenta-vorto" : ""}
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
@@ -102,7 +100,11 @@ function ArgumentoAfiŝo({
          );
       case "ArgumentaVorto":
          return (
-            <span className={hover ? "hover-child" : ""}>
+            <span
+               className={hover ? "hover-child" : ""}
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
                <VortoAfiŝo vorto={argumento.vorto} />{" "}
             </span>
          );
@@ -244,29 +246,18 @@ function ModifantoAfiŝo({
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
-               {modifanto.modifanto}{" "}
+               <span
+                  className={hover ? "hover-self" : ""}
+                  onMouseOver={() => setHover(true)}
+                  onMouseOut={() => setHover(false)}
+               >
+                  {modifanto.modifanto}{" "}
+               </span>
                {kaŝita ? (
                   <span onClick={() => setHidden(!kaŝita)}>(...)</span>
                ) : (
                   <FrazoAfiŝo frazo={modifanto.frazo} subfrazo />
                )}
-            </span>
-         );
-      }
-      case "SimplaModifanto": {
-         return (
-            <span
-               className={hover ? "hover-self" : ""}
-               onMouseOver={() => {
-                  onHover?.(true);
-                  setHover(true);
-               }}
-               onMouseOut={() => {
-                  onHover?.(false);
-                  setHover(false);
-               }}
-            >
-               {modifanto.modifanto}{" "}
             </span>
          );
       }
@@ -294,8 +285,15 @@ function ModifantoAfiŝo({
             </span>
          ) : (
             <span
-               onMouseOver={() => onHover?.(true)}
-               onMouseOut={() => onHover?.(false)}
+               className={hover ? "hover-self" : ""}
+               onMouseOver={() => {
+                  onHover?.(true);
+                  setHover(true);
+               }}
+               onMouseOut={() => {
+                  onHover?.(false);
+                  setHover(false);
+               }}
             >
                {modifanto.modifanto}{" "}
             </span>
