@@ -1,5 +1,10 @@
 @import "../koloroj";
 
+@mixin ŝveba-vorto($koloro) {
+   box-shadow: 0 0 4px 2px $koloro;
+   background-color: $koloro;
+}
+
 .legilo {
    margin-top: 20px;
 }
@@ -7,6 +12,8 @@
 .legilo-eniro {
    width: 700px;
    border: $neĝo solid 2px;
+   background-color: $revo;
+   color: $neĝo;
    padding: 7px;
    font-family: "Lato", sans-serif;
    margin-bottom: 10px;
@@ -20,12 +27,6 @@
 .verbo {
    display: inline-block;
    margin-right: 4px;
-
-   &:after {
-      content: "Predicate";
-      display: block;
-      font-size: 60%;
-   }
 }
 
 .predikata-vorto {
@@ -35,12 +36,6 @@
 .argumenta-vorto {
    display: inline-block;
    margin-right: 4px;
-
-   &:after {
-      content: "Argument";
-      display: block;
-      font-size: 60%;
-   }
 }
 
 .predikato {
@@ -49,13 +44,13 @@
 }
 
 .hover-parent {
-   background-color: $neĝo70;
+   @include ŝveba-vorto($neĝo70);
 }
 
 .hover-self {
-   background-color: $neĝo40;
+   @include ŝveba-vorto($neĝo40);
 }
 
 .hover-child {
-   background-color: $neĝo15;
+   @include ŝveba-vorto($neĝo15);
 }
