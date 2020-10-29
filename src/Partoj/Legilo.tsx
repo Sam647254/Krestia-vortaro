@@ -94,13 +94,15 @@ function ArgumentoAfiŝo({
                {kaŝita ? (
                   <span onClick={() => setHidden(!kaŝita)}>(...)</span>
                ) : (
-                  <FrazoAfiŝo frazo={argumento.predikato} subfrazo />
+                  <span className={hover ? "hover-child" : ""}>
+                     <FrazoAfiŝo frazo={argumento.predikato} subfrazo />
+                  </span>
                )}
             </span>
          );
       case "ArgumentaVorto":
          return (
-            <span className={montriSubtitolo ? "argumenta-vorto" : ""}>
+            <span className={hover ? "hover-child" : ""}>
                <VortoAfiŝo vorto={argumento.vorto} />{" "}
             </span>
          );
@@ -128,13 +130,10 @@ function FrazoAfiŝo({
             <VortoAfiŝo
                className={[
                   "predikata-vorto",
-                  hover ? "hover-self" : "",
                   childHover ? "hover-parent" : "",
                ].join(" ")}
                vorto={frazo.kapo.vorto}
-               onHover={(hover) => {
-                  setHover(hover);
-               }}
+               onHover={setHover}
             />
          </span>{" "}
          <span className={hover ? "hover-child" : ""}>
@@ -162,21 +161,20 @@ function VortoAfiŝo({
 }) {
    const [kaŝita, setHidden] = useState(true);
    const [hover, setHover] = useState(false);
+   const [childHover, setChildHover] = useState(false);
    return (
-      <span
-         onMouseOver={() => {
-            onHover?.(true);
-         }}
-         onMouseOut={() => {
-            onHover?.(false);
-         }}
-      >
+      <span>
          <span
-            className={className + ` ${hover ? "hover-self" : ""}`}
+            className={
+               className +
+               ` ${hover ? "hover-self" : childHover ? "hover-parent" : ""}`
+            }
             onMouseOver={() => {
+               onHover?.(true);
                setHover(true);
             }}
             onMouseOut={() => {
+               onHover?.(false);
                setHover(false);
             }}
          >
@@ -192,7 +190,11 @@ function VortoAfiŝo({
                   <span className="malkaŝita">
                      [{" "}
                      {vorto.modifantoj.map((m, i) => (
-                        <ModifantoAfiŝo key={i} modifanto={m} />
+                        <ModifantoAfiŝo
+                           key={i}
+                           modifanto={m}
+                           onHover={setChildHover}
+                        />
                      ))}{" "}
                      ]
                   </span>
@@ -203,21 +205,32 @@ function VortoAfiŝo({
    );
 }
 
-function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
+function ModifantoAfiŝo({
+   modifanto,
+   onHover,
+}: {
+   modifanto: Modifanto;
+   onHover?: (hover: boolean) => void;
+}): JSX.Element {
    const [kaŝita, setHidden] = useState(true);
+   const [hover, setHover] = useState(false);
    switch (modifanto.tipo) {
       case "Pridiranto": {
          return (
             <ArgumentoAfiŝo
                argumento={modifanto.argumento}
                montriSubtitolo={false}
+               onHover={onHover}
             />
          );
       }
       case "EcoDe": {
          return (
-            <span>
-               de:{" "}
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
+               of:{" "}
                <ArgumentoAfiŝo
                   argumento={modifanto.argumento}
                   montriSubtitolo={false}
@@ -226,25 +239,51 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
          );
       }
       case "ModifantoKunFrazo": {
-         return kaŝita ? (
-            <span>
+         return (
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
                {modifanto.modifanto}{" "}
-               <span onClick={() => setHidden(!kaŝita)}>(...)</span>
-            </span>
-         ) : (
-            <span>
-               {modifanto.modifanto} ({" "}
-               <FrazoAfiŝo frazo={modifanto.frazo} subfrazo /> )
+               {kaŝita ? (
+                  <span onClick={() => setHidden(!kaŝita)}>(...)</span>
+               ) : (
+                  <FrazoAfiŝo frazo={modifanto.frazo} subfrazo />
+               )}
             </span>
          );
       }
       case "SimplaModifanto": {
-         return <span>{modifanto.modifanto} </span>;
+         return (
+            <span
+               className={hover ? "hover-self" : ""}
+               onMouseOver={() => {
+                  onHover?.(true);
+                  setHover(true);
+               }}
+               onMouseOut={() => {
+                  onHover?.(false);
+                  setHover(false);
+               }}
+            >
+               {modifanto.modifanto}{" "}
+            </span>
+         );
       }
       case "ModifantoKunArgumentoj": {
          return modifanto.argumento.length > 0 ? (
-            <span>
-               {modifanto.modifanto} (
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
+               <span
+                  className={hover ? "hover-self" : ""}
+                  onMouseOut={() => setHover(false)}
+                  onMouseOver={() => setHover(true)}
+               >
+                  {modifanto.modifanto}
+               </span>{" "}
+               (
                {modifanto.argumento.map((argumento) => (
                   <ArgumentoAfiŝo
                      argumento={argumento}
@@ -254,12 +293,20 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
                )
             </span>
          ) : (
-            <span>{modifanto.modifanto} </span>
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
+               {modifanto.modifanto}{" "}
+            </span>
          );
       }
       case "Keni": {
          return (
-            <span>
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
                <ArgumentoAfiŝo
                   argumento={modifanto.argumento1}
                   montriSubtitolo={false}
@@ -273,7 +320,10 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
       }
       case "Pini": {
          return (
-            <span>
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
                <ArgumentoAfiŝo
                   argumento={modifanto.argumento1}
                   montriSubtitolo={false}
@@ -291,7 +341,14 @@ function ModifantoAfiŝo({ modifanto }: { modifanto: Modifanto }): JSX.Element {
       }
       case "Ene":
       case "Mine": {
-         return <FrazoAfiŝo frazo={modifanto.predikato} subfrazo />;
+         return (
+            <span
+               onMouseOver={() => onHover?.(true)}
+               onMouseOut={() => onHover?.(false)}
+            >
+               <FrazoAfiŝo frazo={modifanto.predikato} subfrazo />
+            </span>
+         );
       }
    }
 }
