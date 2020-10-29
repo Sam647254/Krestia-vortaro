@@ -64,11 +64,14 @@ function RezultoAfiŝo(rezulto: Rezulto) {
 function ArgumentoAfiŝo({
    argumento,
    montriSubtitolo,
+   onHover,
 }: {
    argumento: Argumento;
    montriSubtitolo: boolean;
+   onHover?: (hover: boolean) => void;
 }) {
    const [kaŝita, setHidden] = useState(true);
+   const [hover, setHover] = useState(false);
    switch (argumento.tipo) {
       case "ene":
       case "mine":
@@ -82,6 +85,7 @@ function ArgumentoAfiŝo({
                            : argumento.mine,
                      modifantoj: [],
                   }}
+                  onHover={setHover}
                />{" "}
                {kaŝita ? (
                   <span onClick={() => setHidden(!kaŝita)}>(...)</span>
@@ -102,17 +106,36 @@ function ArgumentoAfiŝo({
 function FrazoAfiŝo({
    frazo,
    subfrazo,
+   onHover,
 }: {
    frazo: Predikato;
    subfrazo: boolean;
+   onHover?: (hover: boolean) => void;
 }) {
+   const [hover, setHover] = useState(false);
+   const [childHover, setChildHover] = useState(false);
    return (
       <span className={subfrazo ? "" : "predikato"}>
-         <span className={subfrazo ? "" : "verbo"}>
-            <VortoAfiŝo className="predikata-vorto" vorto={frazo.kapo.vorto} />
+         <span
+            className={[
+               subfrazo ? "" : "verbo",
+               hover ? "hover-parent" : "",
+               childHover ? "hover-child" : "",
+            ].join(" ")}
+         >
+            <VortoAfiŝo
+               className="predikata-vorto"
+               vorto={frazo.kapo.vorto}
+               onHover={setHover}
+            />
          </span>{" "}
          {frazo.argumentoj.map((a, i) => (
-            <ArgumentoAfiŝo argumento={a} key={i} montriSubtitolo={!subfrazo} />
+            <ArgumentoAfiŝo
+               argumento={a}
+               key={i}
+               montriSubtitolo={!subfrazo}
+               onHover={setChildHover}
+            />
          ))}
       </span>
    );
@@ -121,9 +144,11 @@ function FrazoAfiŝo({
 function VortoAfiŝo({
    vorto,
    className = "",
+   onHover,
 }: {
    vorto: ModifeblaVorto;
    className?: string | undefined;
+   onHover?: (hover: boolean) => void;
 }) {
    const [kaŝita, setHidden] = useState(true);
    return (
@@ -131,7 +156,12 @@ function VortoAfiŝo({
          <span className={className}>{vorto.kapo.originalaVorto.vorto}</span>{" "}
          {vorto.modifantoj.length > 0 ? (
             kaŝita ? (
-               <span className="kaŝita" onClick={() => setHidden(!kaŝita)}>
+               <span
+                  className="kaŝita"
+                  onClick={() => setHidden(!kaŝita)}
+                  onMouseEnter={() => onHover?.(true)}
+                  onMouseLeave={() => onHover?.(false)}
+               >
                   [...]
                </span>
             ) : (
