@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Legilo.scss";
 import {
+   alportiGloson,
    Argumento,
    legi,
    MalinflektitaVorto,
@@ -11,7 +12,6 @@ import {
    Rezulto,
 } from "../API";
 import { inflekcioj } from "./Trovi";
-import { type } from "os";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -327,23 +327,43 @@ function BasaAfiŝo({
    vorto: MalinflektitaVorto | string;
    glosaInfo?: string;
 }) {
+   const [glosoTrovita, setFound] = useState(false);
+   const [gloso, setGloss] = useState<string | undefined>();
+
+   useEffect(() => {
+      alportiGloson(typeof vorto === "string" ? vorto : vorto.bazaVorto).then(
+         (rezulto) => {
+            setFound(true);
+            if (rezulto != null) {
+               setGloss(rezulto.gloso);
+            }
+         }
+      );
+   });
+
    return (
       <span className="vorto-afiŝo">
          {typeof vorto === "string" ? vorto : vorto.originalaVorto.vorto}
          <span className="vorto-gloso">
-            <p>
-               {typeof vorto === "string"
-                  ? vorto
-                  : vorto.inflekcioŜtupoj
-                       .map((ŝ) =>
-                          ŝ.tipo === "Bazo"
-                             ? ŝ.bazaVorto
-                             : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
-                       )
-                       .reverse()
-                       .join("-")}
-            </p>
-            {glosaInfo != null ? <p>{glosaInfo}</p> : null}
+            {glosoTrovita ? (
+               [
+                  <p>
+                     {typeof vorto === "string"
+                        ? vorto
+                        : vorto.inflekcioŜtupoj
+                             .map((ŝ) =>
+                                ŝ.tipo === "Bazo"
+                                   ? gloso == null ? ŝ.bazaVorto : gloso
+                                   : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
+                             )
+                             .reverse()
+                             .join("-")}
+                  </p>,
+                  glosaInfo != null ? <p>{glosaInfo}</p> : null,
+               ]
+            ) : (
+               <p>...</p>
+            )}
          </span>
       </span>
    );

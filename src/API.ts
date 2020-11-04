@@ -34,6 +34,26 @@ export async function legi(eniro: string) {
    }
 }
 
+const glosoj = new Map<string, string>();
+
+export async function alportiGloson(
+   vorto: string
+): Promise<GlosaRezulto | null> {
+   if (glosoj.has(vorto)) {
+      return { gloso: glosoj.get(vorto)! };
+   }
+   const respondo = await Axios.get(`/api/gloso/${vorto}`);
+   if (respondo.status === 200) {
+      const rezulto = (await respondo.data) as GlosaRezulto;
+      glosoj.set(vorto, rezulto.gloso);
+      return rezulto;
+   } else if (respondo.status === 404) {
+      return null;
+   } else {
+      throw respondo.data;
+   }
+}
+
 export interface VortoRezulto {
    malinflektitaVorto: string | undefined;
    plenigitaVorto: string | undefined;
@@ -73,7 +93,7 @@ export interface KategoriaVortlisto {
       vortoj: VortoRespondo[];
       subkategorioj: string[];
       superkategorioj: string[];
-   }
+   };
 }
 
 export interface MalinflektitaVorto {
@@ -82,17 +102,19 @@ export interface MalinflektitaVorto {
    inflekcioŜtupoj: MalinflektaŜtupo[];
 }
 
-export type MalinflektaŜtupo = {
-   tipo: "Nebazo";
-   vorttipo: string;
-   inflekcio: string;
-   restantaVorto: string;
-} | {
-   tipo: "Bazo";
-   vorttipo: string;
-   inflekcio: string;
-   bazaVorto: string;
-}
+export type MalinflektaŜtupo =
+   | {
+        tipo: "Nebazo";
+        vorttipo: string;
+        inflekcio: string;
+        restantaVorto: string;
+     }
+   | {
+        tipo: "Bazo";
+        vorttipo: string;
+        inflekcio: string;
+        bazaVorto: string;
+     };
 
 export interface EniraVorto {
    vico: number;
@@ -100,54 +122,65 @@ export interface EniraVorto {
    vorto: string;
 }
 
-export type Argumento = {
-   tipo: "ArgumentaVorto";
-   vorto: ModifeblaVorto;
-} | {
-   tipo: "ene";
-   predikato: Predikato;
-   ene: MalinflektitaVorto;
-} | {
-   tipo: "mine";
-   predikato: Predikato;
-   mine: MalinflektitaVorto;
-}
+export type Argumento =
+   | {
+        tipo: "ArgumentaVorto";
+        vorto: ModifeblaVorto;
+     }
+   | {
+        tipo: "ene";
+        predikato: Predikato;
+        ene: MalinflektitaVorto;
+     }
+   | {
+        tipo: "mine";
+        predikato: Predikato;
+        mine: MalinflektitaVorto;
+     };
 
 export interface ModifeblaVorto {
    kapo: MalinflektitaVorto;
    modifantoj: Modifanto[];
 }
 
-export type Modifanto = {
-   tipo: "Pridiranto";
-   argumento: Argumento;
-} | {
-   tipo: "EcoDe";
-   argumento: Argumento;
-} | {
-   tipo: "ModifantoKunFrazo";
-   modifanto: string;
-   frazo: Predikato;
-} | {
-   tipo: "ModifantoKunArgumentoj";
-   modifanto: string;
-   argumento: Argumento[];
-} | {
-   tipo: "Mine";
-   predikato: Predikato;
-} | {
-   tipo: "Ene";
-   predikato: Predikato;
-} | {
-   tipo: "Keni";
-   argumento1: Argumento;
-   argumento2: Argumento;
-} | {
-   tipo: "Pini";
-   argumento1: Argumento;
-   argumento2: Argumento;
-   argumento3: Argumento;
-}
+export type Modifanto =
+   | {
+        tipo: "Pridiranto";
+        argumento: Argumento;
+     }
+   | {
+        tipo: "EcoDe";
+        argumento: Argumento;
+     }
+   | {
+        tipo: "ModifantoKunFrazo";
+        modifanto: string;
+        frazo: Predikato;
+     }
+   | {
+        tipo: "ModifantoKunArgumentoj";
+        modifanto: string;
+        argumento: Argumento[];
+     }
+   | {
+        tipo: "Mine";
+        predikato: Predikato;
+     }
+   | {
+        tipo: "Ene";
+        predikato: Predikato;
+     }
+   | {
+        tipo: "Keni";
+        argumento1: Argumento;
+        argumento2: Argumento;
+     }
+   | {
+        tipo: "Pini";
+        argumento1: Argumento;
+        argumento2: Argumento;
+        argumento3: Argumento;
+     };
 
 export interface Rezulto {
    frazoj: Predikato[];
@@ -164,3 +197,7 @@ export interface Verbo {
 }
 
 export type Eraro = [EniraVorto, string];
+
+export interface GlosaRezulto {
+   gloso: string;
+}
