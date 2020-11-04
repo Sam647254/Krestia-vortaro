@@ -4,11 +4,13 @@ import "./Legilo.scss";
 import {
    Argumento,
    legi,
+   MalinflektitaVorto,
    Modifanto,
    ModifeblaVorto,
    Predikato,
    Rezulto,
 } from "../API";
+import {inflekcioj} from "./Trovi";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -48,11 +50,7 @@ function RezultoAfiŝo(rezulto: Rezulto) {
             ? [
                  <h2>Leftover arguments</h2>,
                  rezulto.argumentoj.map((a, i) => (
-                    <ArgumentoAfiŝo
-                       key={i}
-                       argumento={a}
-                       montriSubtitolo={false}
-                    />
+                    <ArgumentoAfiŝo key={i} argumento={a} />
                  )),
               ]
             : null}
@@ -62,12 +60,12 @@ function RezultoAfiŝo(rezulto: Rezulto) {
 
 function ArgumentoAfiŝo({
    argumento,
-   montriSubtitolo,
    onHover,
+   por,
 }: {
    argumento: Argumento;
-   montriSubtitolo: boolean;
    onHover?: (hover: boolean) => void;
+   por?: MalinflektitaVorto;
 }) {
    const [kaŝita, setHidden] = useState(true);
    const [hover, setHover] = useState(false);
@@ -140,12 +138,7 @@ function FrazoAfiŝo({
          </span>{" "}
          <span className={hover ? "hover-child" : ""}>
             {frazo.argumentoj.map((a, i) => (
-               <ArgumentoAfiŝo
-                  argumento={a}
-                  key={i}
-                  montriSubtitolo={!subfrazo}
-                  onHover={setChildHover}
-               />
+               <ArgumentoAfiŝo argumento={a} key={i} onHover={setChildHover} />
             ))}
          </span>
       </span>
@@ -156,10 +149,12 @@ function VortoAfiŝo({
    vorto,
    className = "",
    onHover,
+   glosaInfo,
 }: {
    vorto: ModifeblaVorto;
    className?: string | undefined;
    onHover?: (hover: boolean) => void;
+   glosaInfo?: string;
 }) {
    const [kaŝita, setHidden] = useState(true);
    const [hover, setHover] = useState(false);
@@ -167,10 +162,9 @@ function VortoAfiŝo({
    return (
       <span>
          <span
-            className={
-               className +
-               ` ${hover ? "hover-self" : childHover ? "hover-parent" : ""}`
-            }
+            className={`${className} ${
+               hover ? "hover-self" : childHover ? "hover-parent" : ""
+            } vorto-afiŝo`}
             onMouseOver={() => {
                onHover?.(true);
                setHover(true);
@@ -181,6 +175,17 @@ function VortoAfiŝo({
             }}
          >
             {vorto.kapo.originalaVorto.vorto}
+            <span className="vorto-gloso">
+               <p>
+                  {vorto.kapo.inflekcioŜtupoj
+                     .map((ŝ) =>
+                        ŝ.tipo === "Bazo" ? ŝ.bazaVorto : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
+                     )
+                     .reverse()
+                     .join("-")}
+               </p>
+               {glosaInfo != null ? <p>{glosaInfo}</p> : null}
+            </span>
          </span>{" "}
          <span>
             {vorto.modifantoj.length > 0 ? (
@@ -219,11 +224,7 @@ function ModifantoAfiŝo({
    switch (modifanto.tipo) {
       case "Pridiranto": {
          return (
-            <ArgumentoAfiŝo
-               argumento={modifanto.argumento}
-               montriSubtitolo={false}
-               onHover={onHover}
-            />
+            <ArgumentoAfiŝo argumento={modifanto.argumento} onHover={onHover} />
          );
       }
       case "EcoDe": {
@@ -232,11 +233,7 @@ function ModifantoAfiŝo({
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
-               of:{" "}
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento}
-                  montriSubtitolo={false}
-               />
+               of: <ArgumentoAfiŝo argumento={modifanto.argumento} />
             </span>
          );
       }
@@ -276,10 +273,7 @@ function ModifantoAfiŝo({
                </span>{" "}
                (
                {modifanto.argumento.map((argumento) => (
-                  <ArgumentoAfiŝo
-                     argumento={argumento}
-                     montriSubtitolo={false}
-                  />
+                  <ArgumentoAfiŝo argumento={argumento} />
                ))}
                )
             </span>
@@ -305,14 +299,8 @@ function ModifantoAfiŝo({
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento1}
-                  montriSubtitolo={false}
-               />
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento2}
-                  montriSubtitolo={false}
-               />
+               <ArgumentoAfiŝo argumento={modifanto.argumento1} />
+               <ArgumentoAfiŝo argumento={modifanto.argumento2} />
             </span>
          );
       }
@@ -322,18 +310,9 @@ function ModifantoAfiŝo({
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento1}
-                  montriSubtitolo={false}
-               />
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento2}
-                  montriSubtitolo={false}
-               />
-               <ArgumentoAfiŝo
-                  argumento={modifanto.argumento3}
-                  montriSubtitolo={false}
-               />
+               <ArgumentoAfiŝo argumento={modifanto.argumento1} />
+               <ArgumentoAfiŝo argumento={modifanto.argumento2} />
+               <ArgumentoAfiŝo argumento={modifanto.argumento3} />
             </span>
          );
       }

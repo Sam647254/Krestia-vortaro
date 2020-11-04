@@ -4,7 +4,7 @@ import { trovi, VortoRezulto } from "../API";
 
 import "./Trovi.scss";
 
-const inflekcioj = new Map(
+export const inflekcioj = new Map(
    Object.entries({
       Infinitivo: "INF",
       Difinito: "DEF",
@@ -16,9 +16,7 @@ const inflekcioj = new Map(
       Progresivo: "PROG",
       Perfekto: "STOP",
       Estonteco: "FUTR",
-      Ujo1Volo: "VOL1",
-      Ujo2Volo: "VOL2",
-      Ujo3Volo: "VOL3",
+      Desiderativo: "DES",
       PredikativoEsti: "PRED_IS",
       AtributivoEstiAntaŭ: "ATTR_IS>",
       AtributivoEstiMalantaŭ: "ATTR_IS<",

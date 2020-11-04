@@ -54,3 +54,30 @@
 .hover-child {
    @include ŝveba-vorto($neĝo15);
 }
+
+.vorto-afiŝo {
+   position: relative;
+   display: inline-block;
+}
+
+.vorto-gloso {
+   visibility: hidden;
+   position: absolute;
+   max-width: 400px;
+   background-color: $revo;
+   border: 2px solid $neĝo;
+   padding: 4px;
+   z-index: 1;
+   bottom: 100%;
+   margin-bottom: 4px;
+   left: 0%;
+
+   p {
+      margin: 0;
+      font-weight: initial;
+   }
+}
+
+.vorto-afiŝo:hover .vorto-gloso {
+   visibility: visible;
+}

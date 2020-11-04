@@ -78,6 +78,20 @@ export interface KategoriaVortlisto {
 
 export interface MalinflektitaVorto {
    originalaVorto: EniraVorto;
+   bazaVorto: string;
+   inflekcioŜtupoj: MalinflektaŜtupo[];
+}
+
+export type MalinflektaŜtupo = {
+   tipo: "Nebazo";
+   vorttipo: string;
+   inflekcio: string;
+   restantaVorto: string;
+} | {
+   tipo: "Bazo";
+   vorttipo: string;
+   inflekcio: string;
+   bazaVorto: string;
 }
 
 export interface EniraVorto {
