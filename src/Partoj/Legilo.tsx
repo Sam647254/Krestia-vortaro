@@ -330,19 +330,20 @@ function BasaAfiŝo({
    const [glosoTrovita, setFound] = useState(false);
    const [gloso, setGloss] = useState<string | undefined>();
 
-   useEffect(() => {
-      alportiGloson(typeof vorto === "string" ? vorto : vorto.bazaVorto).then(
-         (rezulto) => {
-            setFound(true);
-            if (rezulto != null) {
-               setGloss(rezulto.gloso);
-            }
-         }
-      );
-   });
-
    return (
-      <span className="vorto-afiŝo">
+      <span
+         className="vorto-afiŝo"
+         onMouseOver={() => {
+            alportiGloson(
+               typeof vorto === "string" ? vorto : vorto.bazaVorto
+            ).then((rezulto) => {
+               setFound(true);
+               if (rezulto != null) {
+                  setGloss(rezulto.gloso);
+               }
+            });
+         }}
+      >
          {typeof vorto === "string" ? vorto : vorto.originalaVorto.vorto}
          <span className="vorto-gloso">
             {glosoTrovita ? (
@@ -353,7 +354,9 @@ function BasaAfiŝo({
                         : vorto.inflekcioŜtupoj
                              .map((ŝ) =>
                                 ŝ.tipo === "Bazo"
-                                   ? gloso == null ? ŝ.bazaVorto : gloso
+                                   ? gloso == null
+                                      ? ŝ.bazaVorto
+                                      : gloso
                                    : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
                              )
                              .reverse()
