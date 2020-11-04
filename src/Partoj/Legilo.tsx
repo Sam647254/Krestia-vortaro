@@ -10,7 +10,8 @@ import {
    Predikato,
    Rezulto,
 } from "../API";
-import {inflekcioj} from "./Trovi";
+import { inflekcioj } from "./Trovi";
+import { type } from "os";
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
@@ -164,7 +165,7 @@ function VortoAfiŝo({
          <span
             className={`${className} ${
                hover ? "hover-self" : childHover ? "hover-parent" : ""
-            } vorto-afiŝo`}
+            }`}
             onMouseOver={() => {
                onHover?.(true);
                setHover(true);
@@ -174,18 +175,7 @@ function VortoAfiŝo({
                setHover(false);
             }}
          >
-            {vorto.kapo.originalaVorto.vorto}
-            <span className="vorto-gloso">
-               <p>
-                  {vorto.kapo.inflekcioŜtupoj
-                     .map((ŝ) =>
-                        ŝ.tipo === "Bazo" ? ŝ.bazaVorto : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
-                     )
-                     .reverse()
-                     .join("-")}
-               </p>
-               {glosaInfo != null ? <p>{glosaInfo}</p> : null}
-            </span>
+            <BasaAfiŝo vorto={vorto.kapo} glosaInfo={glosaInfo} />
          </span>{" "}
          <span>
             {vorto.modifantoj.length > 0 ? (
@@ -248,7 +238,7 @@ function ModifantoAfiŝo({
                   onMouseOver={() => setHover(true)}
                   onMouseOut={() => setHover(false)}
                >
-                  {modifanto.modifanto}{" "}
+                  <BasaAfiŝo vorto={modifanto.modifanto} />{" "}
                </span>
                {kaŝita ? (
                   <span onClick={() => setHidden(!kaŝita)}>(...)</span>
@@ -269,7 +259,7 @@ function ModifantoAfiŝo({
                   onMouseOut={() => setHover(false)}
                   onMouseOver={() => setHover(true)}
                >
-                  {modifanto.modifanto}
+                  <BasaAfiŝo vorto={modifanto.modifanto} />
                </span>{" "}
                (
                {modifanto.argumento.map((argumento) => (
@@ -289,7 +279,7 @@ function ModifantoAfiŝo({
                   setHover(false);
                }}
             >
-               {modifanto.modifanto}{" "}
+               <BasaAfiŝo vorto={modifanto.modifanto} />{" "}
             </span>
          );
       }
@@ -328,4 +318,33 @@ function ModifantoAfiŝo({
          );
       }
    }
+}
+
+function BasaAfiŝo({
+   vorto,
+   glosaInfo,
+}: {
+   vorto: MalinflektitaVorto | string;
+   glosaInfo?: string;
+}) {
+   return (
+      <span className="vorto-afiŝo">
+         {typeof vorto === "string" ? vorto : vorto.originalaVorto.vorto}
+         <span className="vorto-gloso">
+            <p>
+               {typeof vorto === "string"
+                  ? vorto
+                  : vorto.inflekcioŜtupoj
+                       .map((ŝ) =>
+                          ŝ.tipo === "Bazo"
+                             ? ŝ.bazaVorto
+                             : inflekcioj.get(ŝ.inflekcio) || ŝ.inflekcio
+                       )
+                       .reverse()
+                       .join("-")}
+            </p>
+            {glosaInfo != null ? <p>{glosaInfo}</p> : null}
+         </span>
+      </span>
+   );
 }
