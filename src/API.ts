@@ -42,15 +42,18 @@ export async function alportiGloson(
    if (glosoj.has(vorto)) {
       return { gloso: glosoj.get(vorto)! };
    }
-   const respondo = await Axios.get(`/api/gloso/${vorto}`);
-   if (respondo.status === 200) {
-      const rezulto = (await respondo.data) as GlosaRezulto;
-      glosoj.set(vorto, rezulto.gloso);
-      return rezulto;
-   } else if (respondo.status === 404) {
-      return null;
-   } else {
-      throw respondo.data;
+   try {
+      const respondo = await Axios.get(`/api/gloso/${vorto}`);
+      if (respondo.status === 200) {
+         const rezulto = (await respondo.data) as GlosaRezulto;
+         glosoj.set(vorto, rezulto.gloso);
+         return rezulto;
+      } else {
+         return null;
+      }
+   } catch (e) {
+      if (e.response.status === 404) return null;
+      throw e;
    }
 }
 

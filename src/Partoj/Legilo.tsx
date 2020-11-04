@@ -348,6 +348,7 @@ function BasaAfiŝo({
          <span className="vorto-gloso">
             {glosoTrovita ? (
                [
+                  gloso == null ? <p>(Word not in dictionary)</p> : null,
                   <p>
                      {typeof vorto === "string"
                         ? vorto
