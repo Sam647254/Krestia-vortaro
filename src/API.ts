@@ -25,12 +25,17 @@ export async function alportiĈiujnKategoriojn() {
    return (await respondo.data) as KategoriaVortlisto;
 }
 
-export async function legi(eniro: string) {
-   const respondo = await Axios.post("/api/legi", { eniro });
-   if (respondo.status === 200) {
+export async function legi(eniro: string): Promise<Rezulto | Eraro> {
+   try {
+      const respondo = await Axios.post("/api/legi", { eniro });
       return (await respondo.data) as Rezulto;
-   } else {
-      throw respondo.data;
+   } catch (e) {
+      if (e.response.status === 422) {
+         const data = e.response.data;
+         return [data.item1, data.item2];
+      } else {
+         throw e;
+      }
    }
 }
 

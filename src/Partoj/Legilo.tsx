@@ -21,11 +21,16 @@ interface Params {
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
    const [rezulto, setResult] = useState<Rezulto | null>(null);
+   const [legado, setParsing] = useState(false);
    const params = useParams<Params>();
 
    useEffect(() => {
       if (params.eniro != null) {
-         legi(atob(params.eniro!)).then(setResult);
+         legi(atob(params.eniro!)).then((respondo) => {
+            if (!(respondo instanceof Array)) {
+               setResult(respondo);
+            }
+         });
       }
    }, [params.eniro]);
 
@@ -39,14 +44,18 @@ export function Legilo() {
             className="serĉiButono legi-butono"
             onClick={async (event) => {
                const eniraTeksto = eniro.current!.value;
+               setParsing(true);
                const respondo = await legi(eniraTeksto);
                window.history.replaceState(null, '', `/parse/${btoa(eniraTeksto)}`);
-               setResult(respondo);
+               setParsing(false);
+               if (!(respondo instanceof Array)) {
+                  setResult(respondo);
+               }
             }}
          >
             Parse
          </button>
-         {rezulto != null ? RezultoAfiŝo(rezulto) : null}
+         {legado ? <p>Waiting for result</p> : rezulto != null ? RezultoAfiŝo(rezulto) : null}
       </div>
    );
 }
