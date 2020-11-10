@@ -4,6 +4,7 @@ import "./Legilo.scss";
 import {
    alportiGloson,
    Argumento,
+   Eraro,
    legi,
    MalinflektitaVorto,
    Modifanto,
@@ -20,17 +21,13 @@ interface Params {
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
-   const [rezulto, setResult] = useState<Rezulto | null>(null);
+   const [rezulto, setResult] = useState<Rezulto | Eraro | null>(null);
    const [legado, setParsing] = useState(false);
    const params = useParams<Params>();
 
    useEffect(() => {
       if (params.eniro != null) {
-         legi(atob(params.eniro!)).then((respondo) => {
-            if (!(respondo instanceof Array)) {
-               setResult(respondo);
-            }
-         });
+         legi(atob(params.eniro!)).then(setResult);
       }
    }, [params.eniro]);
 
@@ -46,16 +43,41 @@ export function Legilo() {
                const eniraTeksto = eniro.current!.value;
                setParsing(true);
                const respondo = await legi(eniraTeksto);
-               window.history.replaceState(null, '', `/parse/${btoa(eniraTeksto)}`);
+               window.history.replaceState(
+                  null,
+                  "",
+                  `/parse/${btoa(eniraTeksto)}`
+               );
                setParsing(false);
-               if (!(respondo instanceof Array)) {
-                  setResult(respondo);
-               }
+               setResult(respondo);
             }}
          >
             Parse
          </button>
-         {legado ? <p>Waiting for result</p> : rezulto != null ? RezultoAfiŝo(rezulto) : null}
+         {legado ? (
+            <p>Waiting for result</p>
+         ) : rezulto != null ? (
+            rezulto instanceof Array ? (
+               <EraroAfiŝo eraro={rezulto} />
+            ) : (
+               RezultoAfiŝo(rezulto)
+            )
+         ) : null}
+      </div>
+   );
+}
+
+function EraroAfiŝo({ eraro }: { eraro: Eraro }) {
+   const [vorto, mesaĝo] = eraro;
+   return (
+      <div>
+         {vorto.pozo === 0 && vorto.vico === 0 && vorto.vorto === "" ? null : (
+            <p>
+               Parse error on line {vorto.vico} at position {vorto.pozo} (word{" "}
+               {vorto.vorto}):
+            </p>
+         )}
+         {mesaĝo}
       </div>
    );
 }
