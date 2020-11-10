@@ -12,20 +12,35 @@ import {
    Rezulto,
 } from "../API";
 import { inflekcioj } from "./Trovi";
+import { useParams } from "react-router-dom";
+
+interface Params {
+   eniro?: string;
+}
 
 export function Legilo() {
    const eniro = React.createRef<HTMLTextAreaElement>();
    const [rezulto, setResult] = useState<Rezulto | null>(null);
+   const params = useParams<Params>();
+
+   useEffect(() => {
+      if (params.eniro != null) {
+         legi(atob(params.eniro!)).then(setResult);
+      }
+   }, [params.eniro]);
 
    return (
       <div className="legilo">
-         <textarea className="legilo-eniro" rows={10} ref={eniro} />
+         <textarea className="legilo-eniro" rows={10} ref={eniro}>
+            {params.eniro != null ? atob(params.eniro!) : null}
+         </textarea>
          <button
             type="button"
             className="serĉiButono legi-butono"
             onClick={async (event) => {
                const eniraTeksto = eniro.current!.value;
                const respondo = await legi(eniraTeksto);
+               window.history.replaceState(null, '', `/parse/${btoa(eniraTeksto)}`);
                setResult(respondo);
             }}
          >

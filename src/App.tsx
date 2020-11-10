@@ -44,7 +44,7 @@ function App() {
                <Route exact path="/categorylist">
                   <KategoriaVortlisto />
                </Route>
-               <Route exact path="/parse">
+               <Route path="/parse/:eniro?">
                   <Legilo/>
                </Route>
             </Switch>
