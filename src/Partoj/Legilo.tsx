@@ -70,10 +70,11 @@ export function Legilo() {
 function EraroAfiŝo({ eraro }: { eraro: Eraro }) {
    const [vorto, mesaĝo] = eraro;
    return (
-      <div>
+      <div className="eraro-afiŝo">
+         Error while parsing:{" "}
          {vorto.pozo === 0 && vorto.vico === 0 && vorto.vorto === "" ? null : (
             <p>
-               Parse error on line {vorto.vico} at position {vorto.pozo} (word{" "}
+               On line {vorto.vico} at position {vorto.pozo} (word{" "}
                {vorto.vorto}):
             </p>
          )}
