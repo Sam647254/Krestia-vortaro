@@ -74,8 +74,8 @@ function EraroAfiŝo({ eraro }: { eraro: Eraro }) {
          Error while parsing:{" "}
          {vorto.pozo === 0 && vorto.vico === 0 && vorto.vorto === "" ? null : (
             <p>
-               On line {vorto.vico} at position {vorto.pozo} (word{" "}
-               {vorto.vorto}):
+               On line {vorto.vico} at position {vorto.pozo} (word {vorto.vorto}
+               ):
             </p>
          )}
          {mesaĝo}
@@ -134,6 +134,11 @@ function ArgumentoAfiŝo({
                      modifantoj: [],
                   }}
                   onHover={setHover}
+                  glosaInfo={
+                     por != null
+                        ? `Argument for ${por.originalaVorto.vorto}`
+                        : undefined
+                  }
                />{" "}
                {kaŝita ? (
                   <span onClick={() => setHidden(!kaŝita)}>(...)</span>
@@ -151,7 +156,14 @@ function ArgumentoAfiŝo({
                onMouseOver={() => onHover?.(true)}
                onMouseOut={() => onHover?.(false)}
             >
-               <VortoAfiŝo vorto={argumento.vorto} />{" "}
+               <VortoAfiŝo
+                  vorto={argumento.vorto}
+                  glosaInfo={
+                     por != null
+                        ? `Argument for ${por.originalaVorto.vorto}`
+                        : undefined
+                  }
+               />{" "}
             </span>
          );
    }
@@ -186,7 +198,12 @@ function FrazoAfiŝo({
          </span>{" "}
          <span className={hover ? "hover-child" : ""}>
             {frazo.argumentoj.map((a, i) => (
-               <ArgumentoAfiŝo argumento={a} key={i} onHover={setChildHover} />
+               <ArgumentoAfiŝo
+                  argumento={a}
+                  key={i}
+                  onHover={setChildHover}
+                  por={frazo.kapo.vorto.kapo}
+               />
             ))}
          </span>
       </span>
@@ -410,7 +427,7 @@ function BasaAfiŝo({
                              .reverse()
                              .join("-")}
                   </p>,
-                  glosaInfo != null ? <p>{glosaInfo}</p> : null,
+                  glosaInfo != null ? <p className="glosa-info">{glosaInfo}</p> : null,
                ]
             ) : (
                <p>...</p>
