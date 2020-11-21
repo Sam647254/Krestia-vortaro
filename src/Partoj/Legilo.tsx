@@ -194,6 +194,7 @@ function FrazoAfiŝo({
                ].join(" ")}
                vorto={frazo.kapo.vorto}
                onHover={setHover}
+               glosaInfo="Predicate verb"
             />
          </span>{" "}
          <span className={hover ? "hover-child" : ""}>
