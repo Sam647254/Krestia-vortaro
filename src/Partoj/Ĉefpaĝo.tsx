@@ -30,7 +30,11 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
-            <h3>v0.2.1</h3>
+            <h3>v0.3 (2020/12/19)</h3>
+            <ul>
+               <li>Added the parser</li>
+            </ul>
+            <h3>v0.2.1 (2020/11/30)</h3>
             <ul>
                <li>Updated colour scheme</li>
             </ul>
