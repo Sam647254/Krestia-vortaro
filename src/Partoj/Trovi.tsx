@@ -54,6 +54,7 @@ export const inflekcioj = new Map(
       UnueUjo3: "FST3",
       Intenco: "INTN",
       Kvalito: "QUAL",
+      Hipoteza: "HYP",
    })
 );
 
@@ -110,7 +111,7 @@ function specialaRezulto(rezulto: VortoRezulto, peto: string) {
    return null;
 }
 
-type Ŝtato = "trovado" | "trovita";
+type Ŝtato = "trovado" | "trovita" | "eraro";
 
 export function Trovi() {
    const { peto } = useParams<Params>();
@@ -119,13 +120,20 @@ export function Trovi() {
 
    useEffect(() => {
       setSearchState("trovado");
-      trovi(peto).then((rezulto) => {
-         setSearchState("trovita");
-         setResult(rezulto);
-      });
+      trovi(peto)
+         .then((rezulto) => {
+            setSearchState("trovita");
+            setResult(rezulto);
+         })
+         .catch(() => {
+            setSearchState("eraro");
+         });
    }, [peto]);
 
    const glosoPeto = peto.trim().split(" ");
+
+   if (ŝtato === "eraro")
+      return <div>An error occurred during the search. Please try again.</div>;
 
    if (
       ŝtato === "trovado" ||
