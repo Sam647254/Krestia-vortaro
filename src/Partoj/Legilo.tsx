@@ -13,10 +13,15 @@ import {
    Rezulto,
 } from "../API";
 import { inflekcioj } from "./Trovi";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
 interface Params {
    eniro?: string;
+}
+
+export function RedirektaLegilo() {
+   const params = useParams<Params>();
+   return params.eniro == null ? <Redirect to="/parse"/> : <Redirect to={`/parse/${btoa(params.eniro)}`}/>;
 }
 
 export function Legilo() {
