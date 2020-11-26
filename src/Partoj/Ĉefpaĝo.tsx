@@ -6,12 +6,15 @@ export function Ĉefpaĝo() {
       <div>
          <p>
             Krestia is an engineered language that I have started working on
-            since late 2019.
+            since late 2019. It is designed to be a formal language like Lojban
+            that may be turned into a programming language, and has a
+            minimalistic phonetic inventory.
          </p>
          <p>
             This website is the dictionary. You can use the search bar to look
-            up words, even in their inflected forms, or view the full word list
-            in the following formats:
+            up words, even in their inflected forms. In addition, you can use
+            the parser to parse one or more sentences. You can also view the
+            full word list in the following formats:
          </p>
          <ul>
             <li>
@@ -21,7 +24,9 @@ export function Ĉefpaĝo() {
                <Link to="/typedlist">Alphabetical grouped by word type</Link>
             </li>
             <li>
-               <Link to="/categorylist">Alphabetical grouped by categories</Link>
+               <Link to="/categorylist">
+                  Alphabetical grouped by categories
+               </Link>
             </li>
          </ul>
          {/*<p>*/}
