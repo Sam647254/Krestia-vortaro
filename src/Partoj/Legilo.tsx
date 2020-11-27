@@ -21,7 +21,11 @@ interface Params {
 
 export function RedirektaLegilo() {
    const params = useParams<Params>();
-   return params.eniro == null ? <Redirect to="/parse"/> : <Redirect to={`/parse/${btoa(params.eniro)}`}/>;
+   return params.eniro == null ? (
+      <Redirect to="/parse" />
+   ) : (
+      <Redirect to={`/parse/${btoa(params.eniro)}`} />
+   );
 }
 
 export function Legilo() {
@@ -433,7 +437,9 @@ function BasaAfiŝo({
                              .reverse()
                              .join("-")}
                   </p>,
-                  glosaInfo != null ? <p className="glosa-info">{glosaInfo}</p> : null,
+                  glosaInfo != null ? (
+                     <p className="glosa-info">{glosaInfo}</p>
+                  ) : null,
                ]
             ) : (
                <p>...</p>

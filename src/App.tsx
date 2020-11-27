@@ -1,6 +1,12 @@
 import React from "react";
 import "./App.scss";
-import {BrowserRouter, Switch, Route, Link, useParams} from "react-router-dom";
+import {
+   BrowserRouter,
+   Switch,
+   Route,
+   Link,
+   useParams,
+} from "react-router-dom";
 import { Ĉefpaĝo } from "./Partoj/Ĉefpaĝo";
 import { Trovi } from "./Partoj/Trovi";
 import { Serĉilo } from "./Partoj/Serĉilo";
@@ -8,7 +14,7 @@ import { Vorto } from "./Partoj/Vorto";
 import { Vortlisto } from "./Partoj/Vortlisto";
 import { TipoVortlisto } from "./Partoj/TipaVortlisto";
 import { KategoriaVortlisto } from "./Partoj/KategoriaVortlisto";
-import {Legilo, RedirektaLegilo} from "./Partoj/Legilo";
+import { Legilo, RedirektaLegilo } from "./Partoj/Legilo";
 
 function App() {
    return (
@@ -45,10 +51,10 @@ function App() {
                   <KategoriaVortlisto />
                </Route>
                <Route path="/parse/:eniro?">
-                  <Legilo/>
+                  <Legilo />
                </Route>
                <Route path="/parser/:eniro">
-                  <RedirektaLegilo/>
+                  <RedirektaLegilo />
                </Route>
             </Switch>
          </div>
