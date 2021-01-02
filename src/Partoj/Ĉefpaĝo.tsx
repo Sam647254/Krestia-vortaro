@@ -35,6 +35,10 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
+            <h3>v0.4 (TBD)</h3>
+            <ul>
+               <li>Corrected the horizontal rule's colour</li>
+            </ul>
             <h3>v0.3 (2020/12/19)</h3>
             <ul>
                <li>Added the parser</li>
