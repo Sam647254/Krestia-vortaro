@@ -38,6 +38,10 @@ export function Ĉefpaĝo() {
             <h3>v0.4 (TBD)</h3>
             <ul>
                <li>Corrected the horizontal rule's colour</li>
+               <li>
+                  [Parser] Corrected the bug in which modifiers' tooltips do not
+                  display the meaning
+               </li>
             </ul>
             <h3>v0.3 (2020/12/19)</h3>
             <ul>

@@ -425,7 +425,7 @@ function BasaAfiŝo({
                   gloso == null ? <p>(Word not in dictionary)</p> : null,
                   <p>
                      {typeof vorto === "string"
-                        ? vorto
+                        ? gloso || vorto
                         : vorto.inflekcioŜtupoj
                              .map((ŝ) =>
                                 ŝ.tipo === "Bazo"
