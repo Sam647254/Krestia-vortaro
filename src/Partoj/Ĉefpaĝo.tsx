@@ -35,12 +35,17 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
-            <h3>v0.4 (TBD)</h3>
+            <h3>v0.3.1 (2020/01/17)</h3>
             <ul>
-               <li>Corrected the horizontal rule's colour</li>
+               <li>[General] Corrected the horizontal rule's colour</li>
                <li>
                   [Parser] Corrected the bug in which modifiers' tooltips do not
                   display the meaning
+               </li>
+               <li>
+                  [Dictionary] Corrected the bug in which a query with multiple
+                  English words would bring up an empty gloss result instead of
+                  showing the search results
                </li>
             </ul>
             <h3>v0.3 (2020/12/19)</h3>

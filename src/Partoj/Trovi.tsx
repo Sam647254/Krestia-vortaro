@@ -155,9 +155,10 @@ export function Trovi() {
       return <div>No results for "{peto}".</div>;
    }
 
+   let glosaRezulto = null;
    if (rezulto.glosajVortoj != null) {
       const vortoj = peto.split(" ");
-      return (
+      glosaRezulto = (
          <div>
             <p>Gloss result for "{peto}":</p>
             <table className="gloso-tabelo">
@@ -198,6 +199,7 @@ export function Trovi() {
 
    return (
       <div>
+         {glosaRezulto}
          <div className="peto">Search results for "{peto}":</div>
          {speciala == null ? null : <div>{speciala}</div>}
          {rezulto.rezultoj.map((r) => (
