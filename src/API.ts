@@ -144,6 +144,10 @@ export type Argumento =
         tipo: "mine";
         predikato: Predikato;
         mine: MalinflektitaVorto;
+     }
+   | {
+        tipo: "nombro";
+        nombro: number;
      };
 
 export interface ModifeblaVorto {

@@ -97,7 +97,10 @@ function RezultoAfiŝo(rezulto: Rezulto) {
       <div>
          {rezulto.frazoj.length > 0
             ? [
-                 <h2>Parsed {rezulto.frazoj.length} sentence{rezulto.frazoj.length > 1 ? 's' : ''}</h2>,
+                 <h2>
+                    Parsed {rezulto.frazoj.length} sentence
+                    {rezulto.frazoj.length > 1 ? "s" : ""}
+                 </h2>,
                  rezulto.frazoj.map((frazo, i) => (
                     <FrazoAfiŝo frazo={frazo} key={i} subfrazo={false} />
                  )),
@@ -175,6 +178,8 @@ function ArgumentoAfiŝo({
                />{" "}
             </span>
          );
+      case "nombro":
+         return <span>{argumento.nombro} </span>;
    }
 }
 

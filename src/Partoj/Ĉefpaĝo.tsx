@@ -35,7 +35,13 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
-            <h3>v0.3.1 (2020/01/17)</h3>
+            <h3>v0.3.2 (TBD)</h3>
+            <ul>
+               <li>[Dictionary] Added functionality to evaluate math expressions in the search bar</li>
+               <li>[Dictionary] Looking up a multi-word number will additionally display the gloss</li>
+               <li>[Parser] Fixed issue of numbers causing the parser to crash</li>
+            </ul>
+            <h3>v0.3.1 (2021/01/17)</h3>
             <ul>
                <li>[General] Corrected the horizontal rule's colour</li>
                <li>
