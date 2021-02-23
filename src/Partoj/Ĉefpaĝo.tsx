@@ -35,8 +35,9 @@ export function Ĉefpaĝo() {
          {/*</p>*/}
          <div>
             <h2>Changelog</h2>
-            <h3>v0.3.2 (TBD)</h3>
+            <h3>v0.4 (TBD)</h3>
             <ul>
+               <li>[Dictionary] Added contextual definitions for verbs</li>
                <li>[Dictionary] Added functionality to evaluate math expressions in the search bar</li>
                <li>[Dictionary] Looking up a multi-word number will additionally display the gloss</li>
                <li>[Parser] Fixed issue of numbers causing the parser to crash</li>

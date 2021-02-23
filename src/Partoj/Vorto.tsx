@@ -64,11 +64,11 @@ export function Vorto() {
    useEffect(() => {
       setFetchState("alportado");
       alporti(vorto)
-         .then(respondo => {
+         .then((respondo) => {
             setResult(respondo);
             setFetchState("alportita");
          })
-         .catch(eraro => {
+         .catch((eraro) => {
             console.error(eraro.response);
             if (eraro.response.status === 404) {
                setFetchState("netrovita");
@@ -98,6 +98,14 @@ export function Vorto() {
          <div className="streko" />
          <p className="vorttipo">{rezulto.vorttipo}</p>
          <p>{rezulto.signifo}</p>
+         {rezulto.frazaSignifo != null ? (
+            <p>
+               In context:{" "}
+               <span
+                  dangerouslySetInnerHTML={{ __html: rezulto.frazaSignifo }}
+               />
+            </p>
+         ) : null}
          <p>
             {rezulto.ujoj?.map((ujo, i) =>
                ujo == null
@@ -106,16 +114,21 @@ export function Vorto() {
                        <span>
                           Slot {i + 1}: {ujo}
                        </span>,
-                       <br />
+                       <br />,
                     ]
             )}
          </p>
-         {rezulto.noto.length > 0 ? <p>Notes: {rezulto.noto}</p> : null}
+         {rezulto.noto.length > 0 ? (
+            <p>
+               Notes:{" "}
+               <span dangerouslySetInnerHTML={{ __html: rezulto.noto }} />
+            </p>
+         ) : null}
          {rezulto.radikoj.length > 0 ? (
             <p>
                Roots:{" "}
                {rezulto?.radikoj
-                  .map(r => (
+                  .map((r) => (
                      <Link to={`/word/${r}`} key={r}>
                         {r}
                      </Link>
@@ -146,7 +159,7 @@ export function Vorto() {
                           )
                        )}
                     </tbody>
-                 </table>
+                 </table>,
               ]}
       </div>
    );
